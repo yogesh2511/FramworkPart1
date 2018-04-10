@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!-- <suite name="suite of suites" parallel="methods" thread-count="2"> -->
+<suite name="Rangam US suite" parallel="true" thread-count="5">
+	<listeners>
+		<listener class-name="com.test.automation.UIAutomation.customListener.Listener"></listener>
+	 	<!--<listener class-name="com.test.automation.UIAutomation.customListener.RetryListener"></listener>-->
+	</listeners>
+	<suite-files>	
+		<suite-file path="LoginTestNG.xml" />	
+		<!--  <suite-file path="DashboardAdminHeaderTest.xml"/> 
+		<suite-file path="AssessmentCandidateTest.xml"/>
+		<suite-file path="CandidateCycle.xml"/>		
+		 <suite-file path="NewRequirementTest.xml" /> 		
+		 <suite-file path="UpdateRegisterdetails.xml" /> --> 	
+	</suite-files>
+</suite>

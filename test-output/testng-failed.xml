@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Login With DifferentRecords Suite]">
+  <listeners>
+    <listener class-name="com.test.automation.UIAutomation.customListener.Listener"/>
+  </listeners>
+  <test name="TC001_VerifyRegistration(failed)">
+    <classes>
+      <class name="com.test.automation.UIAutomation.tests.VerifiyLoginWithDifferentRecords">
+        <methods>
+          <include name="verifiyLoginWithDifferentRecords" invocation-numbers="1 2 3 4 5 6"/>
+          <include name="close"/>
+          <include name="setUp1"/>
+        </methods>
+      </class> <!-- com.test.automation.UIAutomation.tests.VerifiyLoginWithDifferentRecords -->
+    </classes>
+  </test> <!-- TC001_VerifyRegistration(failed) -->
+</suite> <!-- Failed suite [Login With DifferentRecords Suite] -->
