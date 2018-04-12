@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
-  <test name="CandidateLifeCycle(failed)">
+<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="instances">
+  <test name="CandidateLifeCycle(failed)" parallel="instances">
     <classes>
       <class name="com.test.automation.UIAutomation.tests.CandidateCycle">
         <methods>

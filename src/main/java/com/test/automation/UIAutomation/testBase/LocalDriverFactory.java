@@ -1,14 +1,19 @@
 package com.test.automation.UIAutomation.testBase;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.SessionId;
+import java.net.MalformedURLException;
+import java.net.URL;
 
+import org.apache.log4j.Logger;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import com.test.automation.UIAutomation.utility.ResourceHelper;
 
-public class LocalDriverFactory {
+public class LocalDriverFactory extends TestBase
+{
+	public static Logger log = Logger.getLogger(LocalDriverFactory.class.getName());
 	private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();
 	private static WebDriver driver = null;
 
@@ -37,25 +42,70 @@ public class LocalDriverFactory {
 	public static WebDriver createInstance(String browserName) {
 
 		if (browserName.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver",
-					ResourceHelper.getResourcePath("\\resources\\drivers\\chromedriver.exe"));
-			SessionId session = ((ChromeDriver) driver).getSessionId();
-			System.out.println("Session id: " + session.toString());
-			driver = new ChromeDriver();
+			driver = initChromeDriver();
+			log.info("chrome browser");
 		}
 		if (browserName.equalsIgnoreCase("firefox")) {
-			System.setProperty("webdriver.gecko.driver",
-					ResourceHelper.getResourcePath("\\resources\\drivers\\geckodriver.exe"));
-			driver = new FirefoxDriver();
-			return driver;
+			driver = initFirefoxDriver();
+			log.info("firefox browser");
 		}
 		if (browserName.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver",
-					ResourceHelper.getResourcePath("\\resources\\drivers\\IEDriverServer.exe"));
-			// System.setProperty("webdriver.ie.driver", driverPath +
-			// "IEDriverServer.exe");
-			driver = new InternetExplorerDriver();
+			driver = initIEDriver();
+			log.info("IE browser");
+		}
+		if (browserName.equalsIgnoreCase("phantom")) {
+			driver = initPhantom();
+			log.info("Phantom browser");
+		} else
+			log.info("browser is invalid, browser of choice..");
+			System.out.println("invalid browser type");
+		
+		return driver;
+	}
+	
+	private static WebDriver initPhantom() {
+		System.setProperty("phantomjs.binary.path",
+				ResourceHelper.getResourcePath("\\resources\\drivers\\phantomjs.exe"));
+		return driver = new PhantomJSDriver();
+	}
+
+	private static WebDriver initChromeDriver() {
+
+		try {
+			DesiredCapabilities dc = new DesiredCapabilities();
+			dc.setBrowserName(DesiredCapabilities.chrome().getBrowserName());
+			driver = new RemoteWebDriver(new URL(Config.getProperty("hub")), dc);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return driver;
 	}
+
+	private static WebDriver initFirefoxDriver() {
+
+		try {
+			DesiredCapabilities dc = new DesiredCapabilities();
+			dc.setBrowserName(DesiredCapabilities.firefox().getBrowserName());
+			driver = new RemoteWebDriver(new URL(Config.getProperty("hub")), dc);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return driver;
+	}
+
+	private static WebDriver initIEDriver() {
+		try {
+			DesiredCapabilities dc = new DesiredCapabilities();
+			dc.setBrowserName(DesiredCapabilities.internetExplorer().getBrowserName());
+			dc.setPlatform(Platform.WINDOWS);
+			driver = new RemoteWebDriver(new URL(Config.getProperty("hub")), dc);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return driver;
+	}
+
+	
 }

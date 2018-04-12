@@ -1,5 +1,5 @@
 {
-
+	/*to run this command: java -jar selenium-server-standalone-3.11.0.jar -role hub -hubConfig hub.json*/
 	"host": null,
 	"port": 4444,
 	"newSessoinWaitTimeout": -1,

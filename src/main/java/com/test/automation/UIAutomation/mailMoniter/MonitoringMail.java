@@ -79,8 +79,10 @@ public class MonitoringMail
 	         message.setRecipients(javax.mail.Message.RecipientType.TO,  parse);
 	         //message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 
-	         //set To field of the cc	       
-	         message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(cc));
+	         //set To field of the cc	
+	         InternetAddress[] parse2 = InternetAddress.parse(cc , true);
+	         message.setRecipients(javax.mail.Message.RecipientType.TO,  parse2);
+	         //message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(cc));
 	         
 	         // Set Subject: header field
 	         message.setSubject(subject);

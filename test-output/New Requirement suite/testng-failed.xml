@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [New Requirement suite]">
-  <test name="Test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [New Requirement suite]" parallel="tests">
+  <parameter name="browser" value="firefox"/>
+  <listeners>
+    <listener class-name="com.test.automation.UIAutomation.customListener.Listener"/>
+  </listeners>
+  <test name="New Requirement Test(failed)" parallel="tests">
+    <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="com.test.automation.UIAutomation.tests.AssessmentCandidateTest">
+      <class name="com.test.automation.UIAutomation.tests.NewRequirementTest">
         <methods>
-          <include name="selectCandidate"/>
-          <include name="clickAssignbtn"/>
-          <include name="Logins" invocation-numbers="0"/>
-          <include name="selctCandidateListPage"/>
+          <include name="login"/>
+          <include name="fillRequirement" invocation-numbers="1 2 3 4 5 6 7 8 9"/>
           <include name="close"/>
+          <include name="SelectHeader"/>
           <include name="setUp1"/>
         </methods>
-      </class> <!-- com.test.automation.UIAutomation.tests.AssessmentCandidateTest -->
+      </class> <!-- com.test.automation.UIAutomation.tests.NewRequirementTest -->
     </classes>
-  </test> <!-- Test(failed) -->
+  </test> <!-- New Requirement Test(failed) -->
 </suite> <!-- Failed suite [New Requirement suite] -->

@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-<!-- 	<listeners>
-		<listener class-name="com.test.automation.UIAutomation.customListener.Listener"></listener>
-	</listeners> -->
+<suite name="CandidateCycle_Suite" parallel="methods" thread-count="2">
+	<!-- <listeners> <listener class-name="com.test.automation.UIAutomation.customListener.Listener"></listener> 
+		</listeners> -->
 	<test name="CandidateLifeCycle">
 		<classes>
 			<class name="com.test.automation.UIAutomation.tests.CandidateCycle" />
 		</classes>
-	</test> <!-- Test -->
+	</test>
+	<!-- <test name="CandidateLifeCycle_Firefox">
+	<parameter name="browser" value="firefox"/>
+		<classes>
+			<class name="com.test.automation.UIAutomation.tests.CandidateCycle" />
+		</classes>
+	</test> -->
 </suite> <!-- Suite -->

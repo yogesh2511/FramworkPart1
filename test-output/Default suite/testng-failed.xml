@@ -6,10 +6,15 @@
       <class name="com.test.automation.UIAutomation.tests.CandidateCycle">
         <methods>
           <include name="AddCandidateReferences"/>
+          <include name="shortlisted"/>
           <include name="selectMatches"/>
-          <include name="login"/>
+          <include name="login" invocation-numbers="0"/>
+          <include name="interview"/>
+          <include name="offerRecived"/>
+          <include name="prospective"/>
+          <include name="assessment"/>
+          <include name="submission"/>
           <include name="close"/>
-          <include name="setUp1"/>
         </methods>
       </class> <!-- com.test.automation.UIAutomation.tests.CandidateCycle -->
     </classes>

@@ -1,33 +1,36 @@
 {
+	/*java -Dwebdriver.chrome.driver="chromedriver.exe" -Dwebdriver.gecko.driver="geckodriver.exe" -jar selenium-server-standalone-3.11.0.jar -role node -nodeConfig node1.json*/
   "capabilities":
-      [
-        {
-          "browserName": "firefox",
-          "maxInstances": 5
-        },
-        {
-          "browserName": "chrome",
-          "maxInstances": 5
-        },
-        {
-          "browserName": "internet explorer",
-          "maxInstances": 1
-        }
-      ],
-    "configuration":
-        {
-        "nodeTimeout":120,
-        "port":5556,
-
-        "hubPort":4444,
-        "hubHost":"localhost",
-
-        "nodePolling":2000,
-
-        "registerCycle":10000,
-        "register":true,
-        "cleanUpCycle":2000,
-        "timeout":30000,
-        "maxSession":5
-        }
+  [
+    {
+      "browserName": "firefox",
+      "maxInstances": 5,
+      "seleniumProtocol": "WebDriver"
+    },
+    {
+      "browserName": "chrome",
+      "maxInstances": 5,
+      "seleniumProtocol": "WebDriver"
+    },
+    {
+      "browserName": "internet explorer",
+      "maxInstances": 1,
+      "seleniumProtocol": "WebDriver"
+    }
+  ],
+  "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
+  "maxSession": 5,
+  "port": 6666,//change as per new user
+  "register": true,
+  "registerCycle": 5000,
+  "hub": "http://192.168.1.72:4444",//change as hub address
+  "nodeStatusCheckTimeout": 5000,
+  "nodePolling": 5000,
+  "role": "node",
+  "unregisterIfStillDownAfter": 60000,
+  "downPollingLimit": 2,
+  "debug": false,
+  "servlets" : [],
+  "withoutServlets": [],
+  "custom": {}
 }

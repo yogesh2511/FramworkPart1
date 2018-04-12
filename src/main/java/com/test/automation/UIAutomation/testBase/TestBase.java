@@ -30,6 +30,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -136,59 +137,44 @@ public class TestBase {
 
 				try {
 
-					/*
-					 * fConfig = new FileInputStream(
-					 * System.getProperty("user.dir") +
-					 * "/resources/properties/Config.properties");
-					 */
 					fConfig = new FileInputStream(
 							ResourceHelper.getResourcePath("/resources/properties/Config.properties"));
 					Config.load(fConfig);
 					log.debug("Config File Loaded sucessfully");
-					/*
-					 * fOR = new FileInputStream(System.getProperty("user.dir")
-					 * + "/resources/properties/OR.properties"); OR.load(fOR);
-					 */
+
 					log.debug("OR File Loaded sucessfully");
 					fhomepage = new FileInputStream(
 							ResourceHelper.getResourcePath("/resources/properties/Requirements.properties"));
-					// System.getProperty("user.dir") +
-					// "/resources/properties/Requirements.properties");
+
 					hompagePropertyFile.load(fhomepage);
 					log.debug("homepage File Loaded sucessfully");
 					floginpage = new FileInputStream(
 							ResourceHelper.getResourcePath("/resources/properties/LoginPage.properties"));
-					// System.getProperty("user.dir") +
-					// "/resources/properties/LoginPage.properties");
+
 					loginPropertyFile.load(floginpage);
 					log.debug("login property File Loaded sucessfully");
 					fCandidateDetails = new FileInputStream(
 							ResourceHelper.getResourcePath("/resources/properties/CandidateDetails.properties"));
-					// System.getProperty("user.dir") +
-					// "/resources/properties/CandidateDetails.properties");
+
 					CandidateDetailsPropertyFile.load(fCandidateDetails);
 					fCandidateList = new FileInputStream(
 							ResourceHelper.getResourcePath("/resources/properties/CandidateList.properties"));
-					// System.getProperty("user.dir") +
-					// "/resources/properties/CandidateList.properties");
+
 					CandidateListPropertyFile.load(fCandidateList);
 
 					fRequirementDetailsFIS = new FileInputStream(
 							ResourceHelper.getResourcePath("/resources/properties/RequirementsDetails.properties"));
-					// System.getProperty("user.dir") +
-					// "/resources/properties/RequirementsDetails.properties");
+
 					RequirementDetailsPropertyFile.load(fRequirementDetailsFIS);
 
 					fNewRequirementsDetails = new FileInputStream(
 							ResourceHelper.getResourcePath("/resources/properties/NewRequirementsDetails.properties"));
-					// System.getProperty("user.dir") +
-					// "/resources/properties/NewRequirementsDetails.properties");
+
 					NewRequirementsDetailsPropertyFile.load(fNewRequirementsDetails);
 
 					fDashboard = new FileInputStream(
 							ResourceHelper.getResourcePath("/resources/properties/Dashboard.properties"));
-					// System.getProperty("user.dir") +
-					// "/resources/properties/NewRequirementsDetails.properties");
+
 					DashboardFile.load(fDashboard);
 
 				} catch (Exception e) {
@@ -203,8 +189,9 @@ public class TestBase {
 	}
 
 	@BeforeTest
-	public void setUp1() {
-		TestBase.initializeTestBaseSetup(Config.getProperty("browser"), Config.getProperty("testsiteurl"));
+	@Parameters("browser")
+	public void setUp1(String browser) {
+		TestBase.initializeTestBaseSetup(browser, Config.getProperty("testsiteurl"));
 		log.info("open url succssfully");
 		System.out.println(Config.getProperty("testsiteurl"));
 		log.info(Config.getProperty("testsiteurl"));
@@ -215,153 +202,24 @@ public class TestBase {
 		waithelper = new WaitHelper(driver);
 	}
 
-	private static WebDriver setDriver(String browserType, String appURL) {
-
-		/*
-		 * LocalDriverFactory.initilize(browserType);
-		 * driver=LocalDriverFactory.getDriver();
-		 * driver.manage().deleteAllCookies(); driver.get(appURL);
-		 * driver.manage().window().maximize();
-		 */
-		switch (browserType.toLowerCase()) {
-		case "chrome":
-			driver = initChromeDriver(appURL);
-			log.info("chrome browser");
-			// test=extent.startTest("Chrome browser");
-			break;
-		case "firefox":
-			driver = initFirefoxDriver(appURL);
-			log.info("firefox browser");
-			// test=extent.startTest("firefox browser");
-			break;
-		case "ie":
-			driver = initIEDriver(appURL);
-			log.info("IE browser");
-			// test=extent.startTest("html browser");
-			break;
-		case "phantom":
-			driver = initPhantom(appURL);
-			log.info("Phantom browser");
-			// test=extent.startTest("html browser");
-			break;
-		default:
-			log.info("browser :" + browserType + " is invalid, browser of choice..");
-			System.out.println("browser : " + browserType + " is invalid,  browser of choice..");
-			// driver = initFirefoxDriver(appURL);
-		}
-		return driver;
-	}
-
-	private static WebDriver initPhantom(String appURL) {
-		System.setProperty("phantomjs.binary.path",
-				ResourceHelper.getResourcePath("\\resources\\drivers\\phantomjs.exe"));
-		return driver = new PhantomJSDriver();
-	}
-
-	private static WebDriver initChromeDriver(String appURL) {
-
-		// System.out.println("Launching google chrome with new profile..");
-
-		try {
-			DesiredCapabilities dc = new DesiredCapabilities();
-			dc.setBrowserName(DesiredCapabilities.chrome().getBrowserName());
-			driver = new RemoteWebDriver(new URL(Config.getProperty("hub")), dc);
-			driver.manage().window().maximize();
-			driver.manage().deleteAllCookies();
-			driver.navigate().to(appURL);
-			/*
-			 * DesiredCapabilities cap = new DesiredCapabilities();
-			 * cap.setBrowserName("chrome"); cap.setPlatform(Platform.ANY);
-			 * ChromeOptions options=new ChromeOptions(); options.merge(cap);
-			 * String huburl="http://192.168.1.72:4444/wd/hub"; driver = new
-			 * RemoteWebDriver(new URL(huburl), options);
-			 */
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		/*
-		 * System.setProperty("webdriver.chrome.driver",
-		 * ResourceHelper.getResourcePath(
-		 * "\\resources\\drivers\\chromedriver.exe"));
-		 * 
-		 * driver = new ChromeDriver(); SessionId session = ((ChromeDriver)
-		 * driver).getSessionId(); System.out.println("Session id: " +
-		 * session.toString());
-		 */
-
-		/*
-		 * * EventFiringWebDriver driver = new EventFiringWebDriver(driver1);
-		 * WebEventListener eventListener= new WebEventListener();
-		 * driver.register(eventListener);
-		 */
-
-		// driver = new ChromeDriver();
-
-		// test=extent.startTest("Redirected to URL");
-		return driver;
-	}
-
-	private static WebDriver initFirefoxDriver(String appURL) {
-		// System.out.println("Launching firefox with new profile..");
-		try {
-			DesiredCapabilities dc = new DesiredCapabilities();
-			dc.setBrowserName(DesiredCapabilities.firefox().getBrowserName());
-			driver = new RemoteWebDriver(new URL(Config.getProperty("hub")), dc);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		/*
-		 * DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-		 * capabilities.setCapability("marionette", true);
-		 * 
-		 * System.setProperty("webdriver.gecko.driver",
-		 * ResourceHelper.getResourcePath(
-		 * "\\resources\\drivers\\geckodriver.exe")); driver = new
-		 * FirefoxDriver();
-		 */
-		driver.manage().window().maximize();
-		driver.manage().deleteAllCookies();
-		driver.navigate().to(appURL);
-		// test=extent.startTest("Redirected to URL");
-		return driver;
-	}
-
-	private static WebDriver initIEDriver(String appURL) {
-		try {
-			DesiredCapabilities dc = new DesiredCapabilities();
-			dc.setBrowserName(DesiredCapabilities.internetExplorer().getBrowserName());
-			dc.setPlatform(Platform.WINDOWS);
-			driver = new RemoteWebDriver(new URL(Config.getProperty("hub")), dc);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		/*
-		 * System.setProperty("webdriver.gecko.driver",
-		 * ResourceHelper.getResourcePath(
-		 * "\\resources\\drivers\\IEDriverServer.exe")); //
-		 * System.setProperty("webdriver.ie.driver", driverPath + //
-		 * "IEDriverServer.exe"); driver = new InternetExplorerDriver();
-		 */
-		driver.manage().window().maximize();
-		driver.manage().deleteAllCookies();
-		driver.navigate().to(appURL);
-		// test=extent.startTest("Redirected to URL");
-		return driver;
-	}
-
-	// new HtmlUnitDriver()
 	public static void initializeTestBaseSetup(String browserType, String appURL) {
 		try {
-			PropertyConfigurator.configure(ResourceHelper.getResourcePath("\\resources\\logs\\log4j.properties"));
+			//PropertyConfigurator.configure(ResourceHelper.getResourcePath("\\resources\\logs\\log4j.properties"));
 			setDriver(browserType, appURL);
 			log.info("creating object of " + browserType + "and URL of: " + appURL);
 		} catch (Exception e) {
 			System.out.println("BrowserType Error....." + e.getStackTrace());
 		}
+	}
+	
+	private static WebDriver setDriver(String browserType, String appURL) {
+
+		LocalDriverFactory.initilize(browserType);
+		driver=LocalDriverFactory.getDriver();
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.navigate().to(appURL);
+		return driver;
 	}
 
 	public static void waitForVisitibilty(WebElement element) {
