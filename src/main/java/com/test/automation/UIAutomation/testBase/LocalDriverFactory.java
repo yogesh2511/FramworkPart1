@@ -29,7 +29,8 @@ public class LocalDriverFactory extends TestBase
 	public static WebDriver getDriver() {
 		if (driver == null) {
 			driver = webDriver.get();
-		} else {
+		}
+		else {
 			System.out.println("driver is already assigned..");
 		}
 		return driver;

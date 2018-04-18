@@ -36,6 +36,11 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.20</version>
 				<configuration>
+					<systemPropertyVariables>
+						<propertyName>${browser}</propertyName>
+						<propertyName>${requirement}</propertyName>
+						<propertyName>${candidatname}</propertyName>
+					</systemPropertyVariables>
 					<suiteXmlFiles>
 						<suiteXmlFile>resources/runner/Suite.xml</suiteXmlFile>
 						<!-- TestNG suite XML files <suiteXmlFile>LoginTestNG.xml</suiteXmlFile> 
@@ -113,11 +118,8 @@
 			<version>3.0.3</version> <scope>provided</scope> </dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/com.beust/jcommander -->
-		<!-- <dependency>
-			<groupId>com.beust</groupId>
-			<artifactId>jcommander</artifactId>
-			<version>1.27</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.beust</groupId> <artifactId>jcommander</artifactId> 
+			<version>1.27</version> </dependency> -->
 		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
 		<dependency>
 			<groupId>org.apache.maven.plugins</groupId>

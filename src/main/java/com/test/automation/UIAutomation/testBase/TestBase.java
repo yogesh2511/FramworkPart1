@@ -29,6 +29,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
@@ -189,9 +190,11 @@ public class TestBase {
 	}
 
 	@BeforeTest
-	@Parameters("browser")
-	public void setUp1(String browser) {
-		TestBase.initializeTestBaseSetup(browser, Config.getProperty("testsiteurl"));
+	public static void setUp1() {
+		String browserName = System.getProperty("browser");
+		System.out.println("browserName:" + browserName);
+		// Config.getProperty("browser")
+		TestBase.initializeTestBaseSetup(browserName, Config.getProperty("testsiteurl"));
 		log.info("open url succssfully");
 		System.out.println(Config.getProperty("testsiteurl"));
 		log.info(Config.getProperty("testsiteurl"));
@@ -204,18 +207,18 @@ public class TestBase {
 
 	public static void initializeTestBaseSetup(String browserType, String appURL) {
 		try {
-			//PropertyConfigurator.configure(ResourceHelper.getResourcePath("\\resources\\logs\\log4j.properties"));
+			// PropertyConfigurator.configure(ResourceHelper.getResourcePath("\\resources\\logs\\log4j.properties"));
 			setDriver(browserType, appURL);
 			log.info("creating object of " + browserType + "and URL of: " + appURL);
 		} catch (Exception e) {
 			System.out.println("BrowserType Error....." + e.getStackTrace());
 		}
 	}
-	
+
 	private static WebDriver setDriver(String browserType, String appURL) {
 
 		LocalDriverFactory.initilize(browserType);
-		driver=LocalDriverFactory.getDriver();
+		driver = LocalDriverFactory.getDriver();
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.navigate().to(appURL);
@@ -225,7 +228,10 @@ public class TestBase {
 	public static void waitForVisitibilty(WebElement element) {
 		wait = new WebDriverWait(driver, 60);
 		// wait.until(ExpectedConditions.visibilityOf(element));
-		wait.until(ExpectedConditions.visibilityOf(element));
+		if (element.isDisplayed())
+			wait.until(ExpectedConditions.visibilityOf(element));
+		else
+			log.info("Element not present");
 	}
 
 	public static void click(WebElement element) {
@@ -355,9 +361,13 @@ public class TestBase {
 	public static WebElement waitElement(String element) {
 		String s = element;
 		By t1 = By.xpath(s);
-		Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(60, TimeUnit.SECONDS)
+		Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(10, TimeUnit.SECONDS)
 				.pollingEvery(5, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
 		WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(t1));
+		if (ele.isDisplayed())
+			return ele;
+		else
+			log.info("webElement not found");
 		return ele;
 	}
 
@@ -365,10 +375,14 @@ public class TestBase {
 		String s = element;
 		By t1 = By.xpath(s);
 		List<WebElement> t = driver.findElements(t1);
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(30, TimeUnit.SECONDS)
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(10, TimeUnit.SECONDS)
 				.pollingEvery(5, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
 		List<WebElement> foo = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(t1));
 		// .presenceOfAllElementsLocatedBy(t1));
+		if (foo.isEmpty())
+			log.info("webElement not found");
+		else
+			return foo;
 		System.out.println("size=" + foo.size());
 		return foo;
 	}
@@ -398,20 +412,30 @@ public class TestBase {
 	}
 
 	public static boolean switchWindow(String title) {
+		boolean flag=false;
 		String currentWindow = driver.getWindowHandle();
 		Set<String> availableWindows = driver.getWindowHandles();
 		System.out.println("availableWindows size:" + availableWindows.size());
 		try {
 			if (!availableWindows.isEmpty()) {
 				System.out.println("if is not isEmpty");
-				for (String windowId : availableWindows) {
+				for (String windowId : availableWindows) 
+				{
 					System.out.println("title of window:" + driver.switchTo().window(windowId).getTitle());
 					try {
-						if (driver.switchTo().window(windowId).getTitle().equals(title)) {
-							System.out.println("if inside if condition");
-							// driver.switchTo().window(windowId);
-							return true;
-						} else {
+						String title2 = driver.switchTo().window(windowId).getTitle();
+						
+						if(title2.equals(null))
+						{
+							System.out.println("title is Null...");
+						}
+						 if (title2.equals(title)) {
+							System.out.println("title matches...");
+							flag=true;
+							break;
+							
+						}
+						else {
 							driver.switchTo().window(currentWindow);
 						}
 					} catch (Exception e) {
@@ -420,14 +444,14 @@ public class TestBase {
 					}
 				}
 			} else {
-				System.out.println("not...valid");
+				System.out.println("window not available..");
 
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return false;
+		return flag;
 
 	}
 
@@ -439,16 +463,24 @@ public class TestBase {
 		driver.findElement(By.xpath("//a[contains(text(),'Logout')]")).click();
 	}
 
-	@AfterSuite(alwaysRun = true)
+	@AfterTest(alwaysRun = true)
 	public static void close() {
-		log.info("**********AfterSuite Close Browser**********");
+		try {
+			log.info("**********AfterSuite Close Browser**********");
+			test = extent.startTest("AfterSuite Close Browser");
+			test.log(LogStatus.INFO, "Close close successfully:");
+			test.log(LogStatus.INFO, "Driver quite successfully:");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			// close the browser
+			if (driver != null) {
+				driver.close();
+				driver.quit();
+			}
+		}
 
-		test = extent.startTest("AfterSuite Close Browser");
-		test.log(LogStatus.INFO, "Close close successfully:");
-		test.log(LogStatus.INFO, "Driver quite successfully:");
-		driver.close();
-		driver.quit();
-		driver = null;
 	}
 
 }

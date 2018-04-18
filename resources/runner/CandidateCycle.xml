@@ -8,10 +8,4 @@
 			<class name="com.test.automation.UIAutomation.tests.CandidateCycle" />
 		</classes>
 	</test>
-	<!-- <test name="CandidateLifeCycle_Firefox">
-	<parameter name="browser" value="firefox"/>
-		<classes>
-			<class name="com.test.automation.UIAutomation.tests.CandidateCycle" />
-		</classes>
-	</test> -->
 </suite> <!-- Suite -->

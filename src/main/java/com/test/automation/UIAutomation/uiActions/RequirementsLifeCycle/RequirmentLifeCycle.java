@@ -9,11 +9,16 @@ import com.test.automation.UIAutomation.testBase.TestBase;
 public class RequirmentLifeCycle extends TestBase {
 	public static Logger log = Logger.getLogger(RequirmentLifeCycle.class.getName());
 
-	public static WebElement selectCandidate(String candidate)
-	{
-		return waitElement("//a[contains(text(),'" + candidate + "')]");
+	public static WebElement selectCandidate(String candidate) {
+		WebElement can = waitElement("//a[contains(text(),'" + candidate + "')]");
+		if (candidate.equalsIgnoreCase(can.getText())) {
+			return can;
+		} else {
+			log.info("Candidate not in propective cycle");
+		}
+		return can;
 	}
-	
+
 	public static WebElement selectLifeCycle(String lifecycle) {
 		return waitElement("//a[contains(text(),'" + lifecycle + "')]");
 	}
@@ -77,7 +82,6 @@ public class RequirmentLifeCycle extends TestBase {
 				"//a[contains(text(),'" + name + "')]/parent::div/parent::div/following-sibling::div/select");
 	}
 
-	
 	public static WebElement shortlistedSMS(String name) {
 		return waitElement(
 				"//a[contains(text(),'" + name + "')]/parent::div/parent::div/following-sibling::div/a[@id='lnkSMS']");
@@ -103,19 +107,19 @@ public class RequirmentLifeCycle extends TestBase {
 				"//a[contains(text(),'" + name + "')]/parent::div/parent::div/following-sibling::div/select");
 	}
 
-	
 	public static WebElement interviewSMS(String name) {
 		return waitElement(
-				"//a[contains(text(),'"+name+"')]/parent::div/parent::div/following-sibling::div/a[@id='lnkSMS']");
+				"//a[contains(text(),'" + name + "')]/parent::div/parent::div/following-sibling::div/a[@id='lnkSMS']");
 	}
 
 	public static WebElement interviewCall(String name) {
 		return waitElement(
-				"//a[contains(text(),'"+name+"')]/parent::div/parent::div/following-sibling::div/a[@id='lnkCall']");
+				"//a[contains(text(),'" + name + "')]/parent::div/parent::div/following-sibling::div/a[@id='lnkCall']");
 	}
 
 	public static WebElement interviewEditView(String name) {
-		return waitElement("//a[contains(text(),'"+name+"')]/parent::div/parent::div/following-sibling::div/a[@id='lnkEditInterview']");
+		return waitElement("//a[contains(text(),'" + name
+				+ "')]/parent::div/parent::div/following-sibling::div/a[@id='lnkEditInterview']");
 	}
 
 	public static WebElement interviewDetails(String name) {
@@ -130,12 +134,13 @@ public class RequirmentLifeCycle extends TestBase {
 
 	public static WebElement offerReceivedCall(String name) {
 		return waitElement(
-				"//a[contains(text(),'"+name+"')]/parent::div/parent::div/following-sibling::div/a[@id='lnkCall']");
+				"//a[contains(text(),'" + name + "')]/parent::div/parent::div/following-sibling::div/a[@id='lnkCall']");
 	}
 
 	public static WebElement offerReceivedView(String name) {
-		return waitElement("//a[contains(text(),'"+name+"')]/parent::div/parent::div/following-sibling::div/a[@id='lnkEditOfferReceived']");
-		
+		return waitElement("//a[contains(text(),'" + name
+				+ "')]/parent::div/parent::div/following-sibling::div/a[@id='lnkEditOfferReceived']");
+
 	}
 
 	public static WebElement offerReceivedDetails(String name) {
@@ -147,6 +152,5 @@ public class RequirmentLifeCycle extends TestBase {
 		return waitElement(
 				"//a[contains(text(),'" + name + "')]/parent::div/parent::div/following-sibling::div/select");
 	}
-	
 
 }

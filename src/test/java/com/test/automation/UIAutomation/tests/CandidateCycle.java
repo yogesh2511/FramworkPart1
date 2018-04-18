@@ -27,8 +27,10 @@ import com.test.automation.UIAutomation.uiActions.RequirementsLifeCycle.Submissi
 public class CandidateCycle extends TestBase {
 
 	public static Logger log = Logger.getLogger(CandidateCycle.class.getName());
-	public static String requirementList = Requirementconfig.Requirement;
-	public static String candidateName = Requirementconfig.CandidateName;
+	public static String requirementList = System.getProperty("requirement");
+	public static String candidateName = System.getProperty("propertyName");
+	/*public static String requirementList = Requirementconfig.Requirement;
+	public static String candidateName = Requirementconfig.CandidateName;*/
 
 	@DataProvider(name = "SingleLoginTestData")
 	public String[][] getTestData() {
@@ -80,6 +82,7 @@ public class CandidateCycle extends TestBase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	@Test(dependsOnMethods = { "selectMatches" })
@@ -176,11 +179,11 @@ public class CandidateCycle extends TestBase {
 			Pages.Prospective();
 			Prospective.save();
 			test.log(LogStatus.INFO, "Click on save");
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		extent.endTest(test);
 	}
 
 	@Test(dependsOnMethods = { "assessment" })
