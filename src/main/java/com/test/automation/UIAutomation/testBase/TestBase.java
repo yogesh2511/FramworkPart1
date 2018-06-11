@@ -191,9 +191,9 @@ public class TestBase {
 
 	@BeforeTest
 	public static void setUp1() {
-		String browserName = System.getProperty("browser");
-		System.out.println("browserName:" + browserName);
-		// Config.getProperty("browser")
+		//String browserName = System.getProperty("browser");
+		//System.out.println("browserName:" + browserName);
+		String browserName= Config.getProperty("browser")
 		TestBase.initializeTestBaseSetup(browserName, Config.getProperty("testsiteurl"));
 		log.info("open url succssfully");
 		System.out.println(Config.getProperty("testsiteurl"));
