@@ -193,7 +193,7 @@ public class TestBase {
 	public static void setUp1() {
 		//String browserName = System.getProperty("browser");
 		//System.out.println("browserName:" + browserName);
-		String browserName= Config.getProperty("browser")
+		String browserName= Config.getProperty("browser");
 		TestBase.initializeTestBaseSetup(browserName, Config.getProperty("testsiteurl"));
 		log.info("open url succssfully");
 		System.out.println(Config.getProperty("testsiteurl"));
