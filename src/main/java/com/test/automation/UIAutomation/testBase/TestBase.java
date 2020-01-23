@@ -358,11 +358,11 @@ public class TestBase {
 		}
 	}
 
-	public static WebElement waitElement(String element) {
+		public static WebElement waitElement(String element) {
 		String s = element;
 		By t1 = By.xpath(s);
-		Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(10, TimeUnit.SECONDS)
-				.pollingEvery(5, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
+		Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(100))
+				.pollingEvery(Duration.ofMillis(600)).ignoring(NoSuchElementException.class);
 		WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(t1));
 		if (ele.isDisplayed())
 			return ele;
@@ -372,13 +372,11 @@ public class TestBase {
 	}
 
 	public static List<WebElement> waitElements(String element) {
-		String s = element;
-		By t1 = By.xpath(s);
-		List<WebElement> t = driver.findElements(t1);
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(10, TimeUnit.SECONDS)
-				.pollingEvery(5, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
-		List<WebElement> foo = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(t1));
-		// .presenceOfAllElementsLocatedBy(t1));
+		By t1 = By.xpath(element);
+		List<WebElement> list= driver.findElements(t1);
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(100))
+				.pollingEvery(Duration.ofMillis(600)).ignoring(NoSuchElementException.class);
+		List<WebElement> foo = wait.until(ExpectedConditions.visibilityOfAllElements(list));
 		if (foo.isEmpty())
 			log.info("webElement not found");
 		else
@@ -386,6 +384,7 @@ public class TestBase {
 		System.out.println("size=" + foo.size());
 		return foo;
 	}
+
 
 	public static void JavaExecute(WebElement element) {
 		waitForVisitibilty(element);
