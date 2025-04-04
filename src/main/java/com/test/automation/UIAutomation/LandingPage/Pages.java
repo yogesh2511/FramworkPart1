@@ -8,7 +8,6 @@ import com.test.automation.UIAutomation.uiActions.Candidates.AssignCandidatePage
 import com.test.automation.UIAutomation.uiActions.Candidates.CandidateListPage;
 import com.test.automation.UIAutomation.uiActions.Candidates.NewCandidatePage;
 import com.test.automation.UIAutomation.uiActions.Dashboard.AmKpiPage;
-import com.test.automation.UIAutomation.uiActions.Dashboard.CallerPanelPage;
 import com.test.automation.UIAutomation.uiActions.Dashboard.DashboardMainPage;
 import com.test.automation.UIAutomation.uiActions.Dashboard.SubDashboardPage;
 import com.test.automation.UIAutomation.uiActions.Requirements.NewRequirement;
@@ -91,11 +90,7 @@ public class Pages extends TestBase
 		return PageFactory.initElements(driver,AmKpiPage.class);
 		
 	}
-	public static CallerPanelPage CallerPanelPage()
-	{
-		return PageFactory.initElements(driver,CallerPanelPage.class);
-		
-	}
+	
 	public static RequirmentLifeCycle RequirmentLifeCycle()
 	{
 		return PageFactory.initElements(driver,RequirmentLifeCycle.class);

@@ -1,6 +1,6 @@
 package com.test.automation.UIAutomation.tests;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.testng.SkipException;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -13,7 +13,6 @@ import com.test.automation.UIAutomation.helper.BrowserHelper;
 import com.test.automation.UIAutomation.testBase.TestBase;
 
 public class AssessmentCandidateTest extends TestBase {
-	public static Logger log = Logger.getLogger(AssessmentCandidateTest.class.getName());
 	SoftAssert s_assert = new SoftAssert();
 
 	@DataProvider(name = "loginData")
@@ -28,7 +27,7 @@ public class AssessmentCandidateTest extends TestBase {
 	public void Logins(String emailAddress, String password, String runMode) throws InterruptedException {
 
 		if (runMode.equalsIgnoreCase("n")) {
-			log.info("verifiyLoginWithDifferentRecords method skipped");
+			Logger.info("verifiyLoginWithDifferentRecords method skipped");
 			test = extent.startTest("verifiyLoginWithDifferentRecords");
 			test.log(LogStatus.INFO, "verifiyLoginWithDifferentRecords method skipped");
 			test.log(LogStatus.SKIP, "Login and logout skipped");
@@ -40,18 +39,18 @@ public class AssessmentCandidateTest extends TestBase {
 				jsp = new LoginPage(driver);
 
 				driver.navigate().refresh();
-				log.info("**********starting test**********");
+				Logger.info("**********starting test**********");
 
 				test = extent.startTest("Logins");
 
-				log.info("try to login with username:" + emailAddress + " and password" + password);
+				Logger.info("try to login with username:" + emailAddress + " and password" + password);
 				test.log(LogStatus.INFO, "Email:" + emailAddress + " and password : " + password);
 
 				boolean LoginSuccessStatus = LoginPage.loginToApplication(emailAddress, password);
-				log.info("LoginSuccessStatus:" + LoginSuccessStatus);
+				Logger.info("LoginSuccessStatus:" + LoginSuccessStatus);
 
-				log.info("Login functionality working fine");
-				log.info("**********finish test************");
+				Logger.info("Login functionality working fine");
+				Logger.info("**********finish test************");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -72,7 +71,7 @@ public class AssessmentCandidateTest extends TestBase {
 	@Test(dependsOnMethods = "Logins", dataProvider = "checkbox", priority = 2)
 	public void selectCandidate(String name, String checked) {
 		if (checked.equalsIgnoreCase("no")) {
-			log.info("SelectCandidate method skipped");
+			Logger.info("SelectCandidate method skipped");
 			test = extent.startTest("Select Candidate");
 			test.log(LogStatus.INFO, "Select Candidate method skipped");
 			test.log(LogStatus.SKIP, "Select Candidate skipped");

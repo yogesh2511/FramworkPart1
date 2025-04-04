@@ -1,6 +1,6 @@
 package com.test.automation.UIAutomation.LoginPage;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,7 +14,6 @@ import com.test.automation.UIAutomation.testBase.TestBase;
 
 public class LoginPage extends TestBase
 {
-	public static Logger log = Logger.getLogger(LoginPage.class.getName());
 	public static String jsb;
 
 	//excelReader er = excelReader();
@@ -44,7 +43,7 @@ public class LoginPage extends TestBase
 			WebElement txtbx_UserName = ElementLoad.getWebElement("username",loginPropertyFile);
 			System.out.println("username:"+txtbx_UserName.toString());
 			sendKeys(txtbx_UserName, username);
-			log.info(txtbx_UserName.toString());
+			Logger.info(txtbx_UserName.toString());
 			// test=extent.startTest(jsb);
 			
 			WebElement txtbx_Password = ElementLoad.getWebElement("password",loginPropertyFile);
@@ -52,15 +51,15 @@ public class LoginPage extends TestBase
 			System.out.println("Password:"+txtbx_Password.toString());
 			
 			sendKeys(txtbx_Password, password);
-			log.info(txtbx_Password.toString());
+			Logger.info(txtbx_Password.toString());
 
 			// test=extent.startTest(jsb);
 			WebElement btn_SingIn = ElementLoad.getWebElement("submitbutton",loginPropertyFile);
 			click(btn_SingIn);
 			jsb = "SignIn button clicked" + btn_SingIn.toString();
-			log.info("jsb:"+jsb);
+			Logger.info("jsb:"+jsb);
 			//driver.findElement(By.xpath("//*[@id='cboxClose']")).click();
-			log.info("welcomestring:" + welcomestring.toString());
+			Logger.info("welcomestring:" + welcomestring.toString());
 			return isElementPresent(welcomestring);
 
 		} catch (Exception e) {
@@ -74,7 +73,7 @@ public class LoginPage extends TestBase
 	public String asserterrormesag() {
 		try {
 			assertErrormesg=ElementLoad.getWebElement("assertErrormesg",loginPropertyFile);
-			log.info("Error message is " + assertErrormesg.getText()+" xpath is:"+assertErrormesg.toString());
+			Logger.info("Error message is " + assertErrormesg.getText()+" xpath is:"+assertErrormesg.toString());
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -91,7 +90,7 @@ public class LoginPage extends TestBase
 
 	public boolean verifyLogOutSuccess() {
 
-		log.info("Login button display:" + JobSeekerLoginbtn.toString());
+		Logger.info("Login button display:" + JobSeekerLoginbtn.toString());
 		return isElementPresent(JobSeekerLoginbtn);
 
 	}

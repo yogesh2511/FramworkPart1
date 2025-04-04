@@ -3,7 +3,7 @@ package com.test.automation.UIAutomation.uiActions.Requirements;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -24,8 +24,7 @@ import com.test.automation.UIAutomation.testBase.TestBase;
 import freemarker.cache.URLTemplateLoader;
 
 public class NewRequirement extends TestBase {
-	public static Logger log = Logger.getLogger(NewRequirement.class.getName());
-
+	
 	private static List<String> urlTitle = null;
 	public static String reqDetailsHandle = Pages.homapage().requirmentDetailsPage;
 	public static WebElement subheader;
@@ -42,14 +41,14 @@ public class NewRequirement extends TestBase {
 
 		try {
 			List<WebElement> selectHeaderTab = ElementLoad().getWebElements("SubHeaderTab", NewRequirementsDetailsPropertyFile);
-			log.info("subHeader:" + subHeader);
+			Logger.info("subHeader:" + subHeader);
 			for (int i = 0; i < selectHeaderTab.size(); i++) 
 			{
-				log.info("tabTitle:" + selectHeaderTab.get(i).getText());
+				Logger.info("tabTitle:" + selectHeaderTab.get(i).getText());
 				if (subHeader.equals(selectHeaderTab.get(i).getText())) 
 				{
-					log.info("Web url: " + driver.getCurrentUrl());
-					// log.info("SelectTab: " + getTitleTab());
+					Logger.info("Web url: " + driver.getCurrentUrl());
+					// Logger.info("SelectTab: " + getTitleTab());
 					javascripthelper.scrollToElemet(selectHeaderTab.get(i));
 					selectHeaderTab.get(i).click();
 					break;
@@ -57,12 +56,12 @@ public class NewRequirement extends TestBase {
 			}
 			// String s=SelectTab();
 		} catch (Exception e) {
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// urlTitle.add(driver.getCurrentUrl());
-		// log.info("SelectTab: "+SelectTab());
+		// Logger.info("SelectTab: "+SelectTab());
 
 	}
 
@@ -86,7 +85,7 @@ public class NewRequirement extends TestBase {
 			//click(ElementLoad().getWebElement("RequirementSave", NewRequirementsDetailsPropertyFile));
 			
 		} catch (Exception e) {
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -101,33 +100,33 @@ public class NewRequirement extends TestBase {
 			System.out.println("RequirementJobCode:"+RequirementJobCode);
 			System.out.println("jobCode:"+jobCode);
 			sendKeys(ElementLoad().getWebElement("RequirementJobCode", NewRequirementsDetailsPropertyFile), RequirementJobCode);
-			log.info("Requirement Code entered in textbox");
+			Logger.info("Requirement Code entered in textbox");
 			sendKeys(ElementLoad().getWebElement("ClientJobCode", NewRequirementsDetailsPropertyFile), jobCode);
-			log.info("job code entered in textbox");
+			Logger.info("job code entered in textbox");
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("JobTitle", NewRequirementsDetailsPropertyFile), jobTitle);
-			log.info("Entered JobTitle in textbox");
+			Logger.info("Entered JobTitle in textbox");
 			Select(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("JobType", NewRequirementsDetailsPropertyFile), JobType);
-			log.info("Select JobType");
+			Logger.info("Select JobType");
 			ElementLoad();
 			Select(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("RequirementVisaType", NewRequirementsDetailsPropertyFile), RequirementVisaType);
-			log.info("Select RequirementVisaType");
+			Logger.info("Select RequirementVisaType");
 			Select(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("ReqStatus", NewRequirementsDetailsPropertyFile), ReqStatus);
-			log.info("Select ReqStatus");
+			Logger.info("Select ReqStatus");
 			
 			
 			clear(ElementLoad().getWebElement("Duration", NewRequirementsDetailsPropertyFile));
 			ElementLoad();
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("Duration", NewRequirementsDetailsPropertyFile), Duration);
-			log.info("Duration entered in textbox");
+			Logger.info("Duration entered in textbox");
 			
 			selectASAP(asap,OpenDate, CloseDate);
 	
 			ElementLoad();
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("DueDate", NewRequirementsDetailsPropertyFile), DueDate);
-			log.info("DueDate entered in textbox");
+			Logger.info("DueDate entered in textbox");
 			ElementLoad();
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("Position", NewRequirementsDetailsPropertyFile), Position);
-			log.info("Position entered in textbox");
+			Logger.info("Position entered in textbox");
 			//click(ElementLoad().getWebElement("Addbtn", NewRequirementsDetailsPropertyFile));
 		/*	Alert alert = driver.switchTo().alert();
 			alert.accept();
@@ -139,44 +138,44 @@ public class NewRequirement extends TestBase {
 			addJobTilte(jobTitle);
 			
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("JobTitle", NewRequirementsDetailsPropertyFile), jobTitle);
-			log.info("Entered JobTitle in textbox");
+			Logger.info("Entered JobTitle in textbox");
 			ElementLoad();
 			Select(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("JobType", NewRequirementsDetailsPropertyFile), JobType);
-			log.info("Select JobType");
+			Logger.info("Select JobType");
 			ElementLoad();
 			Select(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("RequirementVisaType", NewRequirementsDetailsPropertyFile), RequirementVisaType);
-			log.info("Select RequirementVisaType");
+			Logger.info("Select RequirementVisaType");
 			ElementLoad();
 			Select(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("RequirementNoticePeriod", NewRequirementsDetailsPropertyFile), RequirementNoticePeriod);
-			log.info("Select RequirementNoticePeriod");
+			Logger.info("Select RequirementNoticePeriod");
 			ElementLoad();
 			Select(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("LOB", NewRequirementsDetailsPropertyFile), LOB);
-			log.info("Select LOB");
+			Logger.info("Select LOB");
 			ElementLoad();
 			Select(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("SkillType", NewRequirementsDetailsPropertyFile), SkillType);
-			log.info("Select SkillType");
+			Logger.info("Select SkillType");
 			ElementLoad();
 			Select(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("ReqStatus", NewRequirementsDetailsPropertyFile), ReqStatus);
-			log.info("Select ReqStatus");
+			Logger.info("Select ReqStatus");
 			
 			
 			clear(ElementLoad().getWebElement("Duration", NewRequirementsDetailsPropertyFile));
 			ElementLoad();
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("Duration", NewRequirementsDetailsPropertyFile), Duration);
-			log.info("Duration entered in textbox");
+			Logger.info("Duration entered in textbox");
 			
 			selectASAP(asap,OpenDate, CloseDate);
 	
 			ElementLoad();
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("DueDate", NewRequirementsDetailsPropertyFile), DueDate);
-			log.info("DueDate entered in textbox");
+			Logger.info("DueDate entered in textbox");
 			ElementLoad();
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("Position", NewRequirementsDetailsPropertyFile), Position);
-			log.info("Position entered in textbox");
+			Logger.info("Position entered in textbox");
 			*/
 			}
 		 catch (Exception e) {
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -188,8 +187,8 @@ public class NewRequirement extends TestBase {
 			for(String hand: handle)
 			{
 				driver.switchTo().window(hand);
-				log.info("handles :"+driver.getTitle());
-				log.info("handles :"+hand);
+				Logger.info("handles :"+driver.getTitle());
+				Logger.info("handles :"+hand);
 				/*System.out.println("handles :"+driver.getTitle());
 				System.out.println("handles :"+hand);*/
 			}
@@ -197,7 +196,7 @@ public class NewRequirement extends TestBase {
 			driver.findElement(By.xpath(".//*[@id='content']/div[3]/div/form/div[2]/div/a")).click();//change this button xpath to Save button
 			driver.findElement(By.xpath(".//*[@id='SearchText']")).sendKeys(jbtitle);
 			driver.findElement(By.xpath(".//*[@id='btnSearch']")).click();
-			log.info("currnet:"+driver.getTitle());
+			Logger.info("currnet:"+driver.getTitle());
 			//System.out.println("currnet:"+driver.getTitle());
 			//driver.close();
 			//String handle2 = driver.getWindowHandle();
@@ -206,11 +205,11 @@ public class NewRequirement extends TestBase {
 			for(String hand: handle2)
 			{			
 				driver.switchTo().window(hand);
-				log.info("handles :"+driver.getTitle());
+				Logger.info("handles :"+driver.getTitle());
 				System.out.println("handles :"+driver.getTitle());
 				if(driver.getTitle().equalsIgnoreCase("Requirement Details"))
 				{
-					log.info("handles :"+hand);
+					Logger.info("handles :"+hand);
 					System.out.println("handles :"+hand);
 					driver.findElement(By.xpath(".//*[@id='JobTitleText']")).sendKeys(jbtitle);
 					break;
@@ -229,13 +228,13 @@ public class NewRequirement extends TestBase {
 		try {
 			ElementLoad();
 			bValue =driver.findElement(By.xpath(".//*[@id='IsRequirementOpenDateASAP']")).isSelected();
-			log.info("bValue: "+bValue);
-			log.info("asap: "+asap);		
+			Logger.info("bValue: "+bValue);
+			Logger.info("asap: "+asap);		
 			if (asap!=bValue)
 			{
 				
 				driver.findElement(By.xpath(".//*[@id='IsRequirementOpenDateASAP']")).click();	
-				log.info("Checked ASAP checkbox:"+closeDate);
+				Logger.info("Checked ASAP checkbox:"+closeDate);
 				Thread.sleep(1000);
 						    
 			}			
@@ -244,10 +243,10 @@ public class NewRequirement extends TestBase {
 				Thread.sleep(1000);
 				ElementLoad();
 				sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("OpenDate", NewRequirementsDetailsPropertyFile), openDate);
-				log.info("OpenDate entered in openDate"+openDate);
+				Logger.info("OpenDate entered in openDate"+openDate);
 				ElementLoad();
 				sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("CloseDate", NewRequirementsDetailsPropertyFile), closeDate);
-				log.info("CloseDate entered in closeDate"+closeDate);	
+				Logger.info("CloseDate entered in closeDate"+closeDate);	
 				
 			}		//click(ElementLoad().getWebElement("ASAP", RequirementDetailsPropertyFile));
 				
@@ -265,14 +264,14 @@ public class NewRequirement extends TestBase {
 		try {
 			
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("Addressline1", NewRequirementsDetailsPropertyFile), Addressline1);
-			log.info("Entered Addressline1 in textbox");
+			Logger.info("Entered Addressline1 in textbox");
 			
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("Pincode", NewRequirementsDetailsPropertyFile), Pincode);
-			log.info("Entered Pincode in textbox");
+			Logger.info("Entered Pincode in textbox");
 			
 			ElementLoad();
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("ShiftTimeFrom", NewRequirementsDetailsPropertyFile), ShiftTimeFrom);
-			log.info("Entered ShiftTimeFrom in textbox");
+			Logger.info("Entered ShiftTimeFrom in textbox");
 			click(driver.findElement(By.xpath(".//*[@id='ui-datepicker-div']/div[3]/button[2]")));
 			click(driver.findElement(By.xpath(".//*[@id='ShiftStartTime']")));
 			click(driver.findElement(By.xpath(".//*[@id='ui-datepicker-div']/div[3]/button[2]")));
@@ -281,19 +280,19 @@ public class NewRequirement extends TestBase {
 			
 			ElementLoad();
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("ShiftTimeTo", NewRequirementsDetailsPropertyFile), ShiftTimeTo);
-			log.info("Entered ShiftTimeTo in textbox");
+			Logger.info("Entered ShiftTimeTo in textbox");
 			click(driver.findElement(By.xpath(".//*[@id='ui-datepicker-div']/div[3]/button[2]")));
 			click(driver.findElement(By.xpath(".//*[@id='ShiftEndTime']")));
 			click(driver.findElement(By.xpath(".//*[@id='ui-datepicker-div']/div[3]/button[2]")));
 			
 			ElementLoad();
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("WeeklyHours", NewRequirementsDetailsPropertyFile), WeeklyHours);
-			log.info("Entered WeeklyHours in textbox");
+			Logger.info("Entered WeeklyHours in textbox");
 		
 			ElementLoad();
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("InterviewInformationStartDate", NewRequirementsDetailsPropertyFile),
 					InterviewInformationStartDate);
-			log.info("Entered InterviewInformationStartDate in textbox");
+			Logger.info("Entered InterviewInformationStartDate in textbox");
 			
 			ElementLoad();
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("InterviewInformationEndDate", NewRequirementsDetailsPropertyFile),
@@ -301,9 +300,9 @@ public class NewRequirement extends TestBase {
 			ElementLoad();
 			com.test.automation.UIAutomation.config.ElementLoad.getWebElement("InterviewInformationEndDate", NewRequirementsDetailsPropertyFile)
 					.sendKeys(Keys.ENTER);
-			log.info("Entered InterviewInformationEndDate in textbox");
+			Logger.info("Entered InterviewInformationEndDate in textbox");
 		} catch (Exception e) {
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -313,15 +312,15 @@ public class NewRequirement extends TestBase {
 		try {
 			ElementLoad();
 			Select(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("RequirementManager", NewRequirementsDetailsPropertyFile), RequirementManager);
-			log.info("Entered RecruiterJobType in textbox");
+			Logger.info("Entered RecruiterJobType in textbox");
 			ElementLoad();
 			Select(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("RecruiterTeamLeader", NewRequirementsDetailsPropertyFile), RecruiterTeamLeader);
-			log.info("Entered RecruiterVisaType in textbox");
+			Logger.info("Entered RecruiterVisaType in textbox");
 			Select(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("RecruiterAccountManager", NewRequirementsDetailsPropertyFile), RecruiterAccountManager);
-			log.info("Entered RecruiterVisaType in textbox");
+			Logger.info("Entered RecruiterVisaType in textbox");
 			
 		} catch (Exception e) {
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -334,24 +333,24 @@ public class NewRequirement extends TestBase {
 			if (TeamLeaderConfirmation == true) {
 				
 						click(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("TeamLeaderConfirmation", NewRequirementsDetailsPropertyFile));
-				log.info("TeamLeader = true");
+				Logger.info("TeamLeader = true");
 				
 			} else if (TeamLeaderConfirmation == false) {
 				ElementLoad();
 				click(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("TeamLeaderConfirmation", NewRequirementsDetailsPropertyFile));
-				log.info("TeamLeader = false");
+				Logger.info("TeamLeader = false");
 				
 			} 
 				
 			 else {
 			
-				log.info("Entered ResourceCoordinator and TeamLeader =false");
+				Logger.info("Entered ResourceCoordinator and TeamLeader =false");
 				
 			}
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -371,33 +370,33 @@ public class NewRequirement extends TestBase {
 			com.test.automation.UIAutomation.config.ElementLoad.getWebElement("Client", NewRequirementsDetailsPropertyFile).sendKeys(Keys.DOWN);
 			ElementLoad();
 			com.test.automation.UIAutomation.config.ElementLoad.getWebElement("Client", NewRequirementsDetailsPropertyFile).sendKeys(Keys.ENTER);
-			log.info("select Client in textbox:");
+			Logger.info("select Client in textbox:");
 			ElementLoad();
 			Select(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("Category", NewRequirementsDetailsPropertyFile), Category);
-			log.info("select Category status:"+Category);
+			Logger.info("select Category status:"+Category);
 			
 			ElementLoad();
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("ClientBillRate", NewRequirementsDetailsPropertyFile), ClientBillRate);
-			log.info("Entered ClientBillRate in textbox:"+ClientBillRate);
+			Logger.info("Entered ClientBillRate in textbox:"+ClientBillRate);
 			
 			ElementLoad();
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("PayRate", NewRequirementsDetailsPropertyFile), PayRate);
-			log.info("Entered CandidatePayRate in textbox:"+PayRate);
+			Logger.info("Entered CandidatePayRate in textbox:"+PayRate);
 
 			
 			ElementLoad();
 			Select(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("RateType", NewRequirementsDetailsPropertyFile), RateType);
-			log.info("Entered RateType in textbox:"+RateType);
+			Logger.info("Entered RateType in textbox:"+RateType);
 
 			Thread.sleep(1000);
 			click(ElementLoad().getWebElement("VMSManager", NewRequirementsDetailsPropertyFile));
-			log.info("VMSManager click on it");
+			Logger.info("VMSManager click on it");
 			
 			driver.findElement(By.xpath(".//*[@id='drpVMSmanager_chosen']/div/div/input")).sendKeys(VMSManager+Keys.TAB);
 			
 			}
 		 catch (Exception e) {
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 			
 			e.printStackTrace();
 		}
@@ -410,26 +409,26 @@ public class NewRequirement extends TestBase {
 
 			ElementLoad();
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("MandatorySkill1", NewRequirementsDetailsPropertyFile), MandatorySkill1);
-			log.info("Entered MandatorySkill1 in textbox");
+			Logger.info("Entered MandatorySkill1 in textbox");
 			ElementLoad();
 			//clear(ElementLoad().getWebElement("MandatorySkill2", NewRequirementsDetailsPropertyFile));
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("MandatorySkill2", NewRequirementsDetailsPropertyFile), MandatorySkill2);
-			log.info("Entered MandatorySkill2 in textbox");
+			Logger.info("Entered MandatorySkill2 in textbox");
 			ElementLoad();
 			//clear(ElementLoad().getWebElement("MandatorySkill3", NewRequirementsDetailsPropertyFile));
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("MandatorySkill3", NewRequirementsDetailsPropertyFile), MandatorySkill3);
-			log.info("Entered MandatorySkill3 in textbox");
+			Logger.info("Entered MandatorySkill3 in textbox");
 			ElementLoad();
 			//clear(ElementLoad().getWebElement("MandatorySkill4", NewRequirementsDetailsPropertyFile));
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("MandatorySkill4", NewRequirementsDetailsPropertyFile), MandatorySkill4);
-			log.info("Entered MandatorySkill4 in textbox");
+			Logger.info("Entered MandatorySkill4 in textbox");
 			ElementLoad();
 			//clear(ElementLoad().getWebElement("SubjectLine", NewRequirementsDetailsPropertyFile));
 			sendKeys(com.test.automation.UIAutomation.config.ElementLoad.getWebElement("SubjectLine", NewRequirementsDetailsPropertyFile), SubjectLine);
-			log.info("Entered SubjectLine in textbox");
+			Logger.info("Entered SubjectLine in textbox");
 
 		} catch (Exception e) {
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -445,28 +444,28 @@ public class NewRequirement extends TestBase {
 			
 			//clear(paragraph);
 			
-			log.info("cleared in textbox");
+			Logger.info("cleared in textbox");
 			Actions actions = new Actions(driver);
 			actions.moveToElement(paragraph);
 			actions.click(paragraph);
 			actions.sendKeys(JobDescription);
 			actions.build().perform();
-			log.info("Entered JobDescription in textbox");
+			Logger.info("Entered JobDescription in textbox");
 			
 			driver.switchTo().defaultContent();
-			log.info("Return to main frame");
+			Logger.info("Return to main frame");
 			
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 			e.printStackTrace();
 		}
 	}
 	
 	public static void fillOtheLocation()
 	{
-		log.info("fillOtheLocation");
+		Logger.info("fillOtheLocation");
 	}
 
 	

@@ -1,12 +1,10 @@
 package com.test.automation.UIAutomation.uiActions.RequirementsLifeCycle;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
 import com.test.automation.UIAutomation.testBase.TestBase;
 
 public class Interview extends TestBase {
-	public static Logger log= Logger.getLogger(Interview.class);
 		
 	public static WebElement dropdownInterviewAppeal()
 	{

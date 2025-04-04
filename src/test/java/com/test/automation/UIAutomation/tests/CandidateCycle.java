@@ -1,11 +1,10 @@
 package com.test.automation.UIAutomation.tests;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.testng.SkipException;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
+import com.test.automation.UIAutomation.utility.Logger;
 import com.relevantcodes.extentreports.LogStatus;
 import com.test.automation.UIAutomation.LandingPage.HomePage;
 import com.test.automation.UIAutomation.LandingPage.Pages;
@@ -26,7 +25,6 @@ import com.test.automation.UIAutomation.uiActions.RequirementsLifeCycle.Submissi
 
 public class CandidateCycle extends TestBase {
 
-	public static Logger log = Logger.getLogger(CandidateCycle.class.getName());
 	public static String requirementList = System.getProperty("requirement");
 	public static String candidateName = System.getProperty("propertyName");
 	/*public static String requirementList = Requirementconfig.Requirement;
@@ -44,7 +42,7 @@ public class CandidateCycle extends TestBase {
 	public static void login(String emailAddress, String password, String runMode) throws InterruptedException {
 
 		if (runMode.equalsIgnoreCase("n")) {
-			log.info("verifiy Login With Different Records method skipped");
+			Logger.info("verifiy Login With Different Records method skipped");
 			// test = extent.startTest("verifiy Login With Different Records");
 			test.log(LogStatus.INFO, "verifiy Login With Different Records method skipped");
 			test.log(LogStatus.SKIP, "Login and logout skipped");
@@ -52,7 +50,7 @@ public class CandidateCycle extends TestBase {
 
 		} else {
 
-			log.info("starting login test");
+			Logger.info("starting login test");
 			test = extent.startTest("Candidate Life Cycle SourceProc US User Login");
 			try {
 				Pages.loginpage();
@@ -60,12 +58,12 @@ public class CandidateCycle extends TestBase {
 
 				test.log(LogStatus.INFO,
 						"Login successfully: username:" + emailAddress + "\t" + " password" + password + "\t");
-				log.info("Enter username and password");
+				Logger.info("Enter username and password");
 				test.log(LogStatus.INFO, "Login method successfully:");
 
 			} catch (Exception e) {
 
-				log.info(e.getMessage());
+				Logger.info(e.getMessage());
 			}
 		}
 	}

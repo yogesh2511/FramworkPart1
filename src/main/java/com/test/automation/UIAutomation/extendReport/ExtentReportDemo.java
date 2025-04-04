@@ -1,7 +1,7 @@
 package com.test.automation.UIAutomation.extendReport;
 
 import java.io.File;
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 
 import com.relevantcodes.extentreports.DisplayOrder;
 import com.relevantcodes.extentreports.ExtentReports;
@@ -10,7 +10,6 @@ import com.test.automation.UIAutomation.utility.ResourceHelper;
 
 public class ExtentReportDemo extends TestBase
 {
-	public static Logger log = Logger.getLogger(ExtentReportDemo.class.getName());
 	public static ExtentReports extent;
 	 
 	 public static ExtentReports ExtentDemo(String reportName)

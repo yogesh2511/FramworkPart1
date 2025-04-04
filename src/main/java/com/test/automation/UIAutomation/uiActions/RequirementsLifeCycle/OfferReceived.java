@@ -2,7 +2,7 @@ package com.test.automation.UIAutomation.uiActions.RequirementsLifeCycle;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -10,8 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import com.test.automation.UIAutomation.testBase.TestBase;
 
 public class OfferReceived extends TestBase {
-	public static Logger log = Logger.getLogger(OfferReceived.class.getName());
-
+	
 	public static WebElement selectOfferStatus(String status) {
 		WebElement element = null;
 		if (status.equalsIgnoreCase("Offer Received")) {
@@ -21,7 +20,7 @@ public class OfferReceived extends TestBase {
 			element = waitElement("//span[contains(text(),'" + status
 					+ "')]//preceding::input[@id='IsOfferReceived' and @value='2']");
 		} else {
-			log.info("not valid status" + status);
+			Logger.info("not valid status" + status);
 		}
 		return element;
 	}

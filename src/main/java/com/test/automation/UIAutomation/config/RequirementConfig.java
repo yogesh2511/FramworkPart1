@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 
 import com.test.automation.UIAutomation.testBase.TestBase;
 
@@ -17,8 +17,7 @@ public class RequirementConfig extends TestBase {
 
 	public static String Requirement;
 	public static String CandidateName;
-	public static Logger log = Logger.getLogger(RequirementConfig.class.getName());
-
+	
 	public RequirementConfig() {
 		try {
 			or = new Properties();

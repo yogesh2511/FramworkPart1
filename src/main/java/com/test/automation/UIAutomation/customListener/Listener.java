@@ -3,7 +3,7 @@ package com.test.automation.UIAutomation.customListener;
 import java.io.File;
 import java.io.FileInputStream;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -18,17 +18,16 @@ import com.test.automation.UIAutomation.testBase.TestBase;
 import com.test.automation.UIAutomation.utility.ResourceHelper;
 
 public class Listener extends TestBase implements ITestListener {
-	public static Logger log = Logger.getLogger(Listener.class.getName());
 	String errorImagepath = null;
 
 	@Override
 	public void onStart(ITestContext arg0) {
-		log.info(arg0.toString());
+		Logger.info(arg0.toString());
 	}
 
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {
-		log.info(arg0.toString());
+		Logger.info(arg0.toString());
 	}
 
 	@Override
@@ -48,7 +47,7 @@ public class Listener extends TestBase implements ITestListener {
 			} catch (Exception e)
 
 			{
-				log.info("Failed Method onTestFailure:" + e.getMessage());
+				Logger.info("Failed Method onTestFailure:" + e.getMessage());
 
 			}
 			extent.endTest(test);
@@ -77,7 +76,7 @@ public class Listener extends TestBase implements ITestListener {
 			} catch (Exception e)
 
 			{
-				log.info("Failed Method onTestSkipped:" + e.getMessage());
+				Logger.info("Failed Method onTestSkipped:" + e.getMessage());
 
 			}
 			extent.endTest(test);
@@ -88,7 +87,7 @@ public class Listener extends TestBase implements ITestListener {
 
 	@Override
 	public void onTestStart(ITestResult arg0) {
-		log.info(arg0.toString());
+		Logger.info(arg0.toString());
 
 	}
 
@@ -107,7 +106,7 @@ public class Listener extends TestBase implements ITestListener {
 			} catch (Exception e)
 
 			{
-				log.info("Failed Method onTestSuccess:" + e.getMessage());
+				Logger.info("Failed Method onTestSuccess:" + e.getMessage());
 				// e.getMessage();
 				// System.out.println(e.getMessage());
 			}
@@ -127,12 +126,12 @@ public class Listener extends TestBase implements ITestListener {
 					EmailConfiguration.Emailpassword, EmailConfiguration.to, EmailConfiguration.cc,
 					EmailConfiguration.Emailusername, EmailConfiguration.subject, EmailConfiguration.messageBody,
 					EmailConfiguration.attachmentPath, EmailConfiguration.attachmentName);
-			log.info("mail moniter method called");
+			Logger.info("mail moniter method called");
 
 		} catch (Exception e) {
-			log.info("Failed Method onFinish:" + e.getMessage());
+			Logger.info("Failed Method onFinish:" + e.getMessage());
 			System.out.println(e.getMessage());
-			log.info("mail moniter method error message" + e.getMessage());
+			Logger.info("mail moniter method error message" + e.getMessage());
 		}
 	}
 
@@ -144,7 +143,7 @@ public class Listener extends TestBase implements ITestListener {
 			fileInputStreamReader.read(bytes);
 			encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
 		}  catch (Exception e) {
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 			e.printStackTrace();
 		}
 

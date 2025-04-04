@@ -3,36 +3,35 @@ package com.test.automation.UIAutomation.helper;
 import java.util.LinkedList;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.WebDriver;
 
 public class BrowserHelper{
 
 	private WebDriver driver;
-	private Logger Log = Logger.getLogger(BrowserHelper.class);
-
+	
 	public BrowserHelper(WebDriver driver) {
 		this.driver = driver;
-		Log.debug("BrowserHelper : " + this.driver.hashCode());
+		Logger.debug("BrowserHelper : " + this.driver.hashCode());
 	}
 
 	public void goBack() {
 		driver.navigate().back();
-		Log.info("");
+		Logger.info("");
 	}
 
 	public void goForward() {
 		driver.navigate().forward();
-		Log.info("");
+		Logger.info("");
 	}
 
 	public void refresh() {
 		driver.navigate().refresh();
-		Log.info("");
+		Logger.info("");
 	}
 
 	public Set<String> getWindowHandlens() {
-		Log.info("");
+		Logger.info("");
 		return driver.getWindowHandles();
 	}
 
@@ -44,20 +43,20 @@ public class BrowserHelper{
 			throw new IllegalArgumentException("Invalid Index : " + index);
 		}
 		driver.switchTo().window(windowsId.get(index));
-		Log.info(index);
+		//Logger.info(index);
 	}
 
 	public void switchToParentWindow() {
 		LinkedList<String> windowsId = new LinkedList<String>(getWindowHandlens());
 		driver.switchTo().window(windowsId.get(0));
-		Log.info("");
+		Logger.info("");
 	}
 
 	public void switchToParentWithChildClose() {
 		LinkedList<String> windowsId = new LinkedList<String>(getWindowHandlens());
 
 		for (int i = 1; i < windowsId.size(); i++) {
-			Log.info(windowsId.get(i));
+			Logger.info(windowsId.get(i));
 			driver.switchTo().window(windowsId.get(i));
 			driver.close();
 		}
@@ -69,7 +68,7 @@ public class BrowserHelper{
 	
 	public void switchToFrame(String nameOrId) {
 		driver.switchTo().frame(nameOrId);
-		Log.info(nameOrId);
+		Logger.info(nameOrId);
 	}
 
 }

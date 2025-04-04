@@ -6,16 +6,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
 
 import com.test.automation.UIAutomation.mailMoniter.MonitoringMail;
 import com.test.automation.UIAutomation.testBase.TestBase;
 
 public class ConfigConfiguration extends TestBase 
 {
-	
-	public static Logger log = Logger.getLogger(ConfigConfiguration.class.getName());
-	
+		
 	public static String getTestUrl()
 	{
 		return Config.getProperty("testsiteurl");

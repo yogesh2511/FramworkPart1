@@ -4,7 +4,7 @@ import  java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -18,8 +18,7 @@ import com.test.automation.UIAutomation.utility.DateTimeHelper;
 
 public class WebEventListener extends AbstractWebDriverEventListener{
 
-	public static final Logger log = Logger.getLogger(WebEventListener.class.getName());
-
+	
 	public void beforeNavigateTo(String url, WebDriver driver) {
 		try {
 			log("inside method beforeNavigateTo on : "+url);
@@ -291,7 +290,7 @@ public class WebEventListener extends AbstractWebDriverEventListener{
 		}
 	}
 	public void log(String data){
-		log.info(data);
+		Logger.info(data);
 		Reporter.log(data);
 	}
 }

@@ -3,14 +3,14 @@ package com.test.automation.UIAutomation.testBase;
 import java.io.FileInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -79,7 +79,6 @@ public class TestBase {
 	public static FileInputStream file;
 	public static ArrayList<String> handles = new ArrayList<String>();
 
-	public static Logger log = Logger.getLogger(TestBase.class.getName());
 	public static WebDriverWait wait;
 
 	public static ExtentReports extent = ExtentReportDemo.ExtentDemo("AutomationReport");
@@ -128,7 +127,7 @@ public class TestBase {
 							+ "//resources/properties//NewRequirementsDetails.properties");
 					NewRequirementsDetailsPropertyFile.load(fNewRequirementsDetails);
 
-					// log.debug("login property File Loaded sucessfully");
+					// Logger.debug("login property File Loaded sucessfully");
 				} catch (Exception e) {
 
 					e.printStackTrace();
@@ -141,19 +140,19 @@ public class TestBase {
 					fConfig = new FileInputStream(
 							ResourceHelper.getResourcePath("/resources/properties/Config.properties"));
 					Config.load(fConfig);
-					log.debug("Config File Loaded sucessfully");
+					Logger.debug("Config File Loaded sucessfully");
 
-					log.debug("OR File Loaded sucessfully");
+					Logger.debug("OR File Loaded sucessfully");
 					fhomepage = new FileInputStream(
 							ResourceHelper.getResourcePath("/resources/properties/Requirements.properties"));
 
 					hompagePropertyFile.load(fhomepage);
-					log.debug("homepage File Loaded sucessfully");
+					Logger.debug("homepage File Loaded sucessfully");
 					floginpage = new FileInputStream(
 							ResourceHelper.getResourcePath("/resources/properties/LoginPage.properties"));
 
 					loginPropertyFile.load(floginpage);
-					log.debug("login property File Loaded sucessfully");
+					Logger.debug("login property File Loaded sucessfully");
 					fCandidateDetails = new FileInputStream(
 							ResourceHelper.getResourcePath("/resources/properties/CandidateDetails.properties"));
 
@@ -195,9 +194,9 @@ public class TestBase {
 		//System.out.println("browserName:" + browserName);
 		String browserName= Config.getProperty("browser");
 		TestBase.initializeTestBaseSetup(browserName, Config.getProperty("testsiteurl"));
-		log.info("open url succssfully");
+		Logger.info("open url succssfully");
 		System.out.println(Config.getProperty("testsiteurl"));
-		log.info(Config.getProperty("testsiteurl"));
+		Logger.info(Config.getProperty("testsiteurl"));
 		alerhelper = new AlertHelper(driver);
 		browserhelper = new BrowserHelper(driver);
 		dropdownhelper = new DropDownHelper(driver);
@@ -209,7 +208,7 @@ public class TestBase {
 		try {
 			// PropertyConfigurator.configure(ResourceHelper.getResourcePath("\\resources\\logs\\log4j.properties"));
 			setDriver(browserType, appURL);
-			log.info("creating object of " + browserType + "and URL of: " + appURL);
+			Logger.info("creating object of " + browserType + "and URL of: " + appURL);
 		} catch (Exception e) {
 			System.out.println("BrowserType Error....." + e.getStackTrace());
 		}
@@ -231,7 +230,7 @@ public class TestBase {
 		if (element.isDisplayed())
 			wait.until(ExpectedConditions.visibilityOf(element));
 		else
-			log.info("Element not present");
+			Logger.info("Element not present");
 	}
 
 	public static void click(WebElement element) {
@@ -255,11 +254,11 @@ public class TestBase {
 		waitForVisitibilty(element);
 		try {
 			present = element.isDisplayed();
-			log.info(element.getText() + " is dispalyed");
+			Logger.info(element.getText() + " is dispalyed");
 			// return element.isDisplayed();
 		} catch (Exception e) {
-			log.error("Element not found " + e);
-			// log.info(e.getMessage());
+			Logger.error("Element not found " + e);
+			// Logger.info(e.getMessage());
 		}
 		return present;
 	}
@@ -267,7 +266,7 @@ public class TestBase {
 	public static boolean isElementPresent(WebElement element) {
 
 		waitForVisitibilty(element);
-		log.info("element is present:" + element.toString());
+		Logger.info("element is present:" + element.toString());
 		return element.isDisplayed();
 
 	}
@@ -288,7 +287,7 @@ public class TestBase {
 	}
 
 	public static void SelectByText(String tagname, String text) {
-		log.info("Text=" + text + "\t" + "tagname=" + tagname);
+		Logger.info("Text=" + text + "\t" + "tagname=" + tagname);
 		driver.findElement(By.xpath("//'" + tagname + "'[contains(text(),'" + text + "')]"));
 	}
 
@@ -308,7 +307,7 @@ public class TestBase {
 
 		try {
 			String excelpath = ResourceHelper.getBaseResourcePath() + "\\resources\\excel\\" + excelname;
-			log.info("excel path:" + excelpath);
+			Logger.info("excel path:" + excelpath);
 			// System.out.println("excel path:" + excelpath);
 			excel = new Excel_Reader(excelpath);
 			data = excel.getDataFromSheet(sheetName);
@@ -326,7 +325,7 @@ public class TestBase {
 
 		try {
 			String excelpath = ResourceHelper.getBaseResourcePath() + "\\resources\\excel\\" + excelname;
-			log.info("excel path:" + excelpath);
+			Logger.info("excel path:" + excelpath);
 			// System.out.println("excel path:" + excelpath);
 			excel = new Excel_Reader(excelpath);
 			data = excel.getCellData(sheetName, colName, rowNum);
@@ -367,18 +366,19 @@ public class TestBase {
 		if (ele.isDisplayed())
 			return ele;
 		else
-			log.info("webElement not found");
+			Logger.info("webElement not found");
 		return ele;
 	}
 
 	public static List<WebElement> waitElements(String element) {
 		By t1 = By.xpath(element);
 		List<WebElement> list= driver.findElements(t1);
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(100))
-				.pollingEvery(Duration.ofMillis(600)).ignoring(NoSuchElementException.class);
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		wait.pollingEvery(java.time.Duration.ofSeconds(1));
+		wait.ignoring(NoSuchElementException.class);
 		List<WebElement> foo = wait.until(ExpectedConditions.visibilityOfAllElements(list));
 		if (foo.isEmpty())
-			log.info("webElement not found");
+			Logger.info("webElement not found");
 		else
 			return foo;
 		System.out.println("size=" + foo.size());
@@ -455,7 +455,7 @@ public class TestBase {
 	}
 
 	public static void logout() {
-		log.info("**********Logout SourcePros**********");
+		Logger.info("**********Logout SourcePros**********");
 
 		test = extent.startTest("Logout SourcePros");
 		test.log(LogStatus.INFO, "Logout SourcePros");
@@ -465,7 +465,7 @@ public class TestBase {
 	@AfterTest(alwaysRun = true)
 	public static void close() {
 		try {
-			log.info("**********AfterSuite Close Browser**********");
+			Logger.info("**********AfterSuite Close Browser**********");
 			test = extent.startTest("AfterSuite Close Browser");
 			test.log(LogStatus.INFO, "Close close successfully:");
 			test.log(LogStatus.INFO, "Driver quite successfully:");

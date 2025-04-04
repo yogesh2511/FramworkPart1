@@ -1,17 +1,16 @@
 package com.test.automation.UIAutomation.helper;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 
 public class GenericHelper{
 	
-	private static final Logger log = LoggerHelper.getLogger(GenericHelper.class);
 	
 	public String readValueFromElement(WebElement element) {
 
 		if (null == element){
-			log.info("weblement is null");
+			Logger.info("weblement is null");
 			return null;
 		}
 
@@ -19,7 +18,7 @@ public class GenericHelper{
 		try {
 			displayed = isDisplayed(element);
 		} catch (Exception e) {
-			log.error(e);
+			Logger.error(e.getMessage());
 			Reporter.log(e.fillInStackTrace().toString());
 			return null;
 		}
@@ -28,7 +27,7 @@ public class GenericHelper{
 			return null;
 		}
 		String text = element.getText();
-		log.info("weblement valus is.."+text);
+		Logger.info("weblement valus is.."+text);
 		return text;
 	}
 	
@@ -41,17 +40,17 @@ public class GenericHelper{
 			return null;
 		}
 		String value = element.getAttribute("value");
-		log.info("weblement valus is.."+value);
+		Logger.info("weblement valus is.."+value);
 		return value;
 	}
 	
 	public boolean isDisplayed(WebElement element) {
 		try {
 			element.isDisplayed();
-			log.info("element is displayed.."+element);
+			Logger.info("element is displayed.."+element);
 			return true;
 		} catch (Exception e) {
-			log.info(e);
+			Logger.info(e.getMessage());
 			Reporter.log(e.fillInStackTrace().toString());
 			return false;
 		}
@@ -60,10 +59,10 @@ public class GenericHelper{
 	protected boolean isNotDisplayed(WebElement element) {
 		try {
 			element.isDisplayed();
-			log.info("element is displayed.."+element);
+			Logger.info("element is displayed.."+element);
 			return false;
 		} catch (Exception e) {
-			log.error(e);
+			Logger.error(e.getMessage());
 			Reporter.log(e.fillInStackTrace().toString());
 			return true;
 		}
@@ -82,14 +81,14 @@ public class GenericHelper{
 
 	public static synchronized String getElementText( WebElement element) {
 		if (null == element) {
-			log.info("weblement is null");
+			Logger.info("weblement is null");
 			return null;
 		}
 		String elementText = null;
 		try {
 			elementText = element.getText();
 		} catch (Exception ex) {
-			log.info("Element not found " + ex);
+			Logger.info("Element not found " + ex);
 			Reporter.log(ex.fillInStackTrace().toString());
 		}
 		return elementText;

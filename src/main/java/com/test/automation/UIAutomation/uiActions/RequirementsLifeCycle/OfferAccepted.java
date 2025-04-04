@@ -2,16 +2,14 @@ package com.test.automation.UIAutomation.uiActions.RequirementsLifeCycle;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import com.test.automation.UIAutomation.testBase.TestBase;
+import com.test.automation.UIAutomation.utility.Logger;
 
 public class OfferAccepted extends TestBase {
-	public static Logger log = Logger.getLogger(OfferAccepted.class.getName());
-
 	public static WebElement selectOfferStatus(String status) {
 		WebElement element = null;
 		if (status.equalsIgnoreCase("In progress")) {
@@ -23,7 +21,7 @@ public class OfferAccepted extends TestBase {
 			element = waitElement("//span[contains(text(),'"+status+"')]/preceding::input[@name='HiringStatusID' and @value='3']");
 		}
 		else {
-			log.info("not valid status" + status);
+			Logger.info("not valid status" + status);
 		}
 		return element;
 	}
@@ -49,7 +47,7 @@ public class OfferAccepted extends TestBase {
 			element = waitElement("//span[contains(text(),'"+status+"')]/preceding::input[@id='ContractTypeID' and @value='3']");
 		}
 		else {
-			log.info("not valid status:" + status);
+			Logger.info("not valid status:" + status);
 		}
 		return element;
 	}

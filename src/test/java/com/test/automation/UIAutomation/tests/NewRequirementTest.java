@@ -1,6 +1,6 @@
 package com.test.automation.UIAutomation.tests;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.By;
 import org.testng.SkipException;
 import org.testng.annotations.DataProvider;
@@ -16,7 +16,6 @@ import com.test.automation.UIAutomation.uiActions.Requirements.NewRequirement;
 
 public class NewRequirementTest extends TestBase
 {
-	public static Logger log= Logger.getLogger(NewRequirementTest.class.getName());
 	@DataProvider(name = "SingleLoginTestData")
 	public String[][] getTestData() {
 		//String[][] testRecords = getData("TestData.xlsx", "RIPLLoginTestData");
@@ -38,7 +37,7 @@ public class NewRequirementTest extends TestBase
 	{
 		
 		if (runMode.equalsIgnoreCase("n")) {
-			log.info("verifiy Login With Different Records method skipped");
+			Logger.info("verifiy Login With Different Records method skipped");
 			//test = extent.startTest("verifiy Login With Different Records");
 			test.log(LogStatus.INFO, "verifiy Login With Different Records method skipped");
 			test.log(LogStatus.SKIP, "Login and logout skipped");
@@ -47,7 +46,7 @@ public class NewRequirementTest extends TestBase
 		}
 		else{
 		
-		log.info("**********starting login test**********");		
+		Logger.info("**********starting login test**********");		
 		
 		test = extent.startTest("SourceProc India User Login");
 		try {
@@ -55,12 +54,12 @@ public class NewRequirementTest extends TestBase
 			LoginPage.loginToApplication(emailAddress, password);
 			
 			test.log(LogStatus.INFO, "Login successfully: username:" + emailAddress + "\t"+" password" + password+"\t");
-			log.info("Enter username and password");
+			Logger.info("Enter username and password");
 			test.log(LogStatus.INFO, "Login method successfully:");
 			
 		} catch (Exception e) {
 			
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 		}
 		}
 	}
@@ -77,7 +76,7 @@ public class NewRequirementTest extends TestBase
 			test.log(LogStatus.INFO, "Select Sub Menu");
 		} catch (Exception e) {
 			
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 		}	
 
 	}	
@@ -90,7 +89,7 @@ public class NewRequirementTest extends TestBase
 	{	
 		
 		if (runMode.equalsIgnoreCase("n")) {
-			log.info("RegisterDetailsTestData skipped methods");
+			Logger.info("RegisterDetailsTestData skipped methods");
 			//test = extent.startTest("verifiy skipped methods");
 			test.log(LogStatus.INFO, "verifiy skipped methods");
 			test.log(LogStatus.SKIP, "Registeration details skipped");
@@ -120,7 +119,7 @@ public class NewRequirementTest extends TestBase
 		} 
 		catch (Exception e) 
 			{
-				log.info(e.getMessage());
+				Logger.info(e.getMessage());
 			}
 		}
 }	
@@ -141,7 +140,7 @@ public class NewRequirementTest extends TestBase
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 		}
 	}
 

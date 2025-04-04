@@ -2,7 +2,7 @@ package com.test.automation.UIAutomation.helper;
 
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchFrameException;
@@ -16,27 +16,24 @@ import com.test.automation.UIAutomation.testBase.TestBase;
 
 public class WaitHelper extends TestBase{
 	
-	//private WebDriver driver;
-	private static Logger log = LoggerHelper.getLogger(WaitHelper.class);
-
 	
 	public WaitHelper(WebDriver driver) {
 		this.driver = driver;
-		log.debug("WaitHelper : " + this.driver.hashCode());
+		Logger.debug("WaitHelper : " + this.driver.hashCode());
 	}
 	
 	public void setImplicitWait(long timeout, TimeUnit unit) {
-		log.info(timeout);
+		//Logger.info(timeout);
 		driver.manage().timeouts().implicitlyWait(timeout, unit == null ? TimeUnit.SECONDS : unit);
 	}
 	
 	public void setPageLoadTimeout(long timeout, TimeUnit unit) {
-		log.info(timeout);
+		//Logger.info(timeout);
 		driver.manage().timeouts().pageLoadTimeout(timeout, unit == null ? TimeUnit.SECONDS : unit);
 	}
 	
 	private WebDriverWait getWait(int timeOutInSeconds, int pollingEveryInMiliSec) {
-		log.debug("");
+		Logger.debug("");
 		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 		wait.pollingEvery(pollingEveryInMiliSec, TimeUnit.MILLISECONDS);
 		wait.ignoring(NoSuchElementException.class);
@@ -47,7 +44,7 @@ public class WaitHelper extends TestBase{
 	}
 	
 	public void waitForElementVisible(WebElement locator, int timeOutInSeconds, int pollingEveryInMiliSec) {
-		log.info(locator);
+		Logger.info(locator.getText());
 		WebDriverWait wait = getWait(timeOutInSeconds, pollingEveryInMiliSec);
 		wait.until(ExpectedConditions.visibilityOf(locator));
 		
@@ -57,7 +54,7 @@ public class WaitHelper extends TestBase{
 		WebDriverWait wait = new WebDriverWait(driver, timeout);
 		wait.until(ExpectedConditions.visibilityOf(element));
 		wait.ignoring(NoSuchElementException.class);
-		log.info("element found..."+element.getText());
+		Logger.info("element found..."+element.getText());
 	}
 	
 	public WebElement waitForElement(WebDriver driver,long time,WebElement element){

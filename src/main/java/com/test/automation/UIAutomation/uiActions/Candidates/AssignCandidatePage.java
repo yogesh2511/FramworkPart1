@@ -2,7 +2,7 @@ package com.test.automation.UIAutomation.uiActions.Candidates;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -11,7 +11,6 @@ import com.test.automation.UIAutomation.uiActions.Dashboard.DashboardMainPage;
 
 public class AssignCandidatePage extends TestBase
 {
-	public static Logger log = Logger.getLogger(AssignCandidatePage.class.getName());
 	public void dropdownClient(String client)
 	{
 		click(driver.findElement(By.xpath("//div[@id='drpClient_chosen']/a/span")));
@@ -51,7 +50,7 @@ public class AssignCandidatePage extends TestBase
 		}
 		else
 		{
-			log.info("Element not present");
+			Logger.info("Element not present");
 		}
 		//driver.findElement(By.xpath("//input[@value='AllAsigned']")).click();
 	}
@@ -80,7 +79,7 @@ public class AssignCandidatePage extends TestBase
 		}
 		else
 		{
-			log.info("Element not present");
+			Logger.info("Element not present");
 		}
 		//;
 		

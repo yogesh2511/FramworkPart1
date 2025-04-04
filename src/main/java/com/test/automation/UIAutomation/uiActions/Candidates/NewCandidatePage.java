@@ -1,17 +1,12 @@
 package com.test.automation.UIAutomation.uiActions.Candidates;
 
 import java.util.List;
-
-import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.test.automation.UIAutomation.testBase.TestBase;
 
 public class NewCandidatePage extends TestBase 
 {
-	public static Logger log=Logger.getLogger(NewCandidatePage.class.getName());
-
 	
 	public static List<WebElement> findHeaderMenu()
 	{

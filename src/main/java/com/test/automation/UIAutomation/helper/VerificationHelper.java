@@ -1,20 +1,20 @@
 package com.test.automation.UIAutomation.helper;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.WebElement;
 
 public class VerificationHelper{
 
-	private static final  Logger log = LoggerHelper.getLogger(VerificationHelper.class);
+	
 
 	public static synchronized boolean verifyElementPresent( WebElement element) {
 		boolean isDispalyed = false;
 		try {
 			 isDispalyed= element.isDisplayed();
-			 log.info(element.getText()+" is dispalyed");
+			 Logger.info(element.getText()+" is dispalyed");
 		}
 		catch(Exception ex) {
-			log.error("Element not found " + ex);
+			Logger.error("Element not found " + ex);
 		}
 		
 		return isDispalyed;
@@ -24,10 +24,10 @@ public class VerificationHelper{
 		boolean isDispalyed = false;
 		try {
 			 element.isDisplayed();
-			 log.info(element.getText()+" is dispalyed");
+			 Logger.info(element.getText()+" is dispalyed");
 		}
 		catch(Exception ex) {
-			log.error("Element not found " + ex);
+			Logger.error("Element not found " + ex);
 			isDispalyed = true;
 		}
 		
@@ -39,17 +39,17 @@ public class VerificationHelper{
 		try {
 			String actualText=element.getText();
 			if(actualText.equals(expectedText)) {
-				log.info("actualText is :"+actualText+" expected text is: "+expectedText);
+				Logger.info("actualText is :"+actualText+" expected text is: "+expectedText);
 				return flag=true;
 			}
 			else {
-				log.error("actualText is :"+actualText+" expected text is: "+expectedText);
+				Logger.error("actualText is :"+actualText+" expected text is: "+expectedText);
 				return flag;
 			}
 		}
 		catch(Exception ex) {
-			log.error("actualText is :"+element.getText()+" expected text is: "+expectedText);
-			log.info("text not matching" + ex);
+			Logger.error("actualText is :"+element.getText()+" expected text is: "+expectedText);
+			Logger.info("text not matching" + ex);
 			return flag;
 		}
 	}

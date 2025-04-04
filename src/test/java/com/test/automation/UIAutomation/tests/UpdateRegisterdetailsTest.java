@@ -1,6 +1,6 @@
 package com.test.automation.UIAutomation.tests;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.testng.SkipException;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -14,8 +14,7 @@ import com.test.automation.UIAutomation.uiActions.Requirements.NewRequirement;
 import com.test.automation.UIAutomation.uiActions.Requirements.UpdateRegisterationdetailsPage;
 
 public class UpdateRegisterdetailsTest extends TestBase {
-	public static Logger log = Logger.getLogger(UpdateRegisterdetailsTest.class.getName());
-
+	
 	@DataProvider(name = "SingleLoginTestData")
 	public String[][] getTestData() {
 		String[][] testRecords = getData(Config.getProperty("exelsheetname"),
@@ -34,7 +33,7 @@ public class UpdateRegisterdetailsTest extends TestBase {
 	public static void login(String emailAddress, String password, String runMode) throws InterruptedException {
 
 		if (runMode.equalsIgnoreCase("n")) {
-			log.info("verifiyLoginWithDifferentRecords method skipped");
+			Logger.info("verifiyLoginWithDifferentRecords method skipped");
 			// test = extent.startTest("verifiyLoginWithDifferentRecords");
 			test.log(LogStatus.INFO, "verifiyLoginWithDifferentRecords method skipped");
 			test.log(LogStatus.SKIP, "Login and logout skipped");
@@ -42,7 +41,7 @@ public class UpdateRegisterdetailsTest extends TestBase {
 
 		} else {
 
-			log.info("**********starting test**********");
+			Logger.info("**********starting test**********");
 
 			// test = extent.startTest("login");
 			try {
@@ -51,12 +50,12 @@ public class UpdateRegisterdetailsTest extends TestBase {
 
 				test.log(LogStatus.INFO,
 						"Login successfully: username:" + emailAddress + "\t" + " password" + password + "\t");
-				log.info("Enter username and password");
+				Logger.info("Enter username and password");
 				test.log(LogStatus.INFO, "Login method successfully:");
 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				log.info(e.getMessage());
+				Logger.info(e.getMessage());
 			}
 		}
 	}
@@ -72,7 +71,7 @@ public class UpdateRegisterdetailsTest extends TestBase {
 			test.log(LogStatus.INFO, "Select Sub Menu");
 		} catch (Exception e) {
 
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 		}
 
 	}
@@ -123,7 +122,7 @@ public class UpdateRegisterdetailsTest extends TestBase {
 			String skill1, String skill2, String skill3, String skill4, String subject, String runMode) {
 
 		if (runMode.equalsIgnoreCase("n")) {
-			log.info("RegisterDetailsTestData skipped methods");
+			Logger.info("RegisterDetailsTestData skipped methods");
 			test = extent.startTest("verifiy skipped methods");
 			test.log(LogStatus.INFO, "verifiy skipped methods");
 			test.log(LogStatus.SKIP, "Registeration details skipped");
@@ -173,7 +172,7 @@ public class UpdateRegisterdetailsTest extends TestBase {
 				test.log(LogStatus.INFO, "fill All RequirementInformation Details");
 
 			} catch (Exception e) {
-				log.info(e.getMessage());
+				Logger.info(e.getMessage());
 			}
 		}
 	}
@@ -190,7 +189,7 @@ public class UpdateRegisterdetailsTest extends TestBase {
 			test.log(LogStatus.INFO, "Fill Other Location Details");
 
 		} catch (Exception e) { // TODO Auto-generated catch block
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 		}
 	}
 

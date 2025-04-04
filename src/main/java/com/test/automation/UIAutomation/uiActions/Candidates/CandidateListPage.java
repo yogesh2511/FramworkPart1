@@ -1,6 +1,6 @@
 package com.test.automation.UIAutomation.uiActions.Candidates;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -8,8 +8,7 @@ import com.test.automation.UIAutomation.testBase.TestBase;
 
 public class CandidateListPage extends TestBase
 {	
-	public static Logger log = Logger.getLogger(CandidateListPage.class.getName());
-
+	
 	public static WebElement getCandidateName(String name)
 	{		
 		return driver.findElement(By.xpath("//A[@class='fleft bgremove' and text()='"+name+"']"));
@@ -28,7 +27,7 @@ public class CandidateListPage extends TestBase
 		WebElement Firstname=null;
 		try {
 			 Firstname = com.test.automation.UIAutomation.config.ElementLoad.getWebElement("firstname", CandidateListPropertyFile);
-			 log.info(Firstname.getText());
+			 Logger.info(Firstname.getText());
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -40,7 +39,7 @@ public class CandidateListPage extends TestBase
 		WebElement lastname=null;
 		try {
 			lastname = com.test.automation.UIAutomation.config.ElementLoad.getWebElement("lastname", CandidateListPropertyFile);
-			log.info(lastname.getText());
+			Logger.info(lastname.getText());
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -52,7 +51,7 @@ public class CandidateListPage extends TestBase
 		WebElement email=null;
 		try {
 			email = com.test.automation.UIAutomation.config.ElementLoad.getWebElement("email", CandidateListPropertyFile);
-			log.info(email.getText());
+			Logger.info(email.getText());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

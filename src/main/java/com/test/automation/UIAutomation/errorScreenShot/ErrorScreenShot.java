@@ -6,6 +6,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.apache.commons.io.FileUtils;
 import com.test.automation.UIAutomation.testBase.TestBase;
 import com.test.automation.UIAutomation.utility.DateTimeHelper;
+import com.test.automation.UIAutomation.utility.Logger;
 
 public class ErrorScreenShot extends TestBase
 {
@@ -17,18 +18,18 @@ public class ErrorScreenShot extends TestBase
 		try {
 			String reportDirectory = new File(System.getProperty("user.dir")).getAbsolutePath() + "/resources/ScreenShots/"+folderName;
 			System.out.println("image path:"+(String) reportDirectory +"_"+methodname + "_" + DateTimeHelper.getCurrentDateTime()+ imageExtension);
-			log.info((String) reportDirectory +"_"+methodname + "_" +DateTimeHelper.getCurrentDateTime() + imageExtension);
+			Logger.info((String) reportDirectory +"_"+methodname + "_" +DateTimeHelper.getCurrentDateTime() + imageExtension);
 			 dest = (String) reportDirectory +"_"+methodname + "_" + DateTimeHelper.getCurrentDateTime() + imageExtension;
-			log.info("Dest="+dest);
+			Logger.info("Dest="+dest);
 			 destFile = new File((String) reportDirectory +"_"+methodname + "_" + DateTimeHelper.getCurrentDateTime() + imageExtension);
 			System.out.println("reportDirectory:"+reportDirectory);
 			FileUtils.copyFile(scrFile, destFile);
-			log.info("image path : "+destFile.getAbsolutePath());
-			log.info("Take screenshot completed");
+			Logger.info("image path : "+destFile.getAbsolutePath());
+			Logger.info("Take screenshot completed");
 			return dest;
 		} 
 		catch (Exception e) {
-			log.error(e.getMessage());
+			Logger.error(e.getMessage());
 			System.out.println("ErrorScreenShot(class)->getScreenShot(method) error:"+e.getMessage());
 		}
 		

@@ -1,6 +1,6 @@
 package com.test.automation.UIAutomation.helper;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,34 +8,33 @@ import org.openqa.selenium.WebElement;
 public class JavaScriptHelper {
 
 	private static WebDriver driver;
-	private static Logger Log = Logger.getLogger(JavaScriptHelper.class);
-
+	
 	public JavaScriptHelper(WebDriver driver) {
 		this.driver = driver;
-		Log.debug("JavaScriptHelper : " + this.driver.hashCode());
+		Logger.debug("JavaScriptHelper : " + this.driver.hashCode());
 	}
 
 	public static Object executeScript(String script) {
 		JavascriptExecutor exe = (JavascriptExecutor) driver;
-		Log.info(script);
+		Logger.info(script);
 		return exe.executeScript(script);
 	}
 
 	public static Object executeScript(String script, Object... args) {
 		JavascriptExecutor exe = (JavascriptExecutor) driver;
-		Log.info(script);
+		Logger.info(script);
 		return exe.executeScript(script, args);
 	}
 
 	public static void scrollToElemet(WebElement element) {
 		executeScript("window.scrollTo(arguments[0],arguments[1])", element.getLocation().x, element.getLocation().y);
-		Log.info(element);
+		Logger.info(element.getText());
 	}
 
 	public static void scrollToElemetAndClick(WebElement element) {
 		scrollToElemet(element);
 		element.click();
-		Log.info(element);
+		Logger.info(element.getText());
 	}
 
 	public static void scrollIntoView(WebElement element) {
@@ -46,7 +45,7 @@ public class JavaScriptHelper {
 	public static void scrollIntoViewAndClick(WebElement element) {
 		scrollIntoView(element);
 		element.click();
-		Log.info(element);
+		Logger.info(element.getText());
 	}
 
 	public static void scrollDownVertically() {

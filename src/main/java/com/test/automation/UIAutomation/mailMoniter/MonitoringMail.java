@@ -12,20 +12,14 @@ import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import org.apache.log4j.Logger;
-
-import com.test.automation.UIAutomation.customListener.Listener;
-
 public class MonitoringMail
 {
 	//http://www.codejava.net/java-ee/javamail/send-e-mail-with-attachment-in-java
-	public static Logger log = Logger.getLogger(MonitoringMail.class.getName());
 	public static void sendmail
 	(		String host,
 			String port,			

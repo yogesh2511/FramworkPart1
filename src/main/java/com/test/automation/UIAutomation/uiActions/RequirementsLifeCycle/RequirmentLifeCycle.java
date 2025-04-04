@@ -1,20 +1,17 @@
 package com.test.automation.UIAutomation.uiActions.RequirementsLifeCycle;
-
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.test.automation.UIAutomation.testBase.TestBase;
 
 public class RequirmentLifeCycle extends TestBase {
-	public static Logger log = Logger.getLogger(RequirmentLifeCycle.class.getName());
-
 	public static WebElement selectCandidate(String candidate) {
 		WebElement can = waitElement("//a[contains(text(),'" + candidate + "')]");
 		if (candidate.equalsIgnoreCase(can.getText())) {
 			return can;
 		} else {
-			log.info("Candidate not in propective cycle");
+			Logger.info("Candidate not in propective cycle");
 		}
 		return can;
 	}

@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -22,44 +22,43 @@ import org.openqa.selenium.WebElement;
 import com.test.automation.UIAutomation.testBase.TestBase;
 
 public class AmKpiPage extends TestBase {
-	public static Logger log = Logger.getLogger(AmKpiPage.class.getName());
-
+	
 	public WebElement dropDownKPITYPE(String kpi) {
-		log.info("KPI option:" + kpi);
+		Logger.info("KPI option:" + kpi);
 		return driver.findElement(By.xpath("//select[@id='KPIType']/option[contains(text(),'" + kpi + "')]"));
 	}
 
 	public WebElement dropDownAccountManager(String manager) {
-		log.info("manager option:" + manager);
+		Logger.info("manager option:" + manager);
 		return driver.findElement(By.xpath("//select[@id='AMUsers']/option[contains(text(),'" + manager + "')]"));
 	}
 
 	public WebElement dropDownYear(String year) {
-		log.info("year option:" + year);
+		Logger.info("year option:" + year);
 		return driver.findElement(By.xpath("//select[@id='Year']/option[contains(text(),'" + year + "')]"));
 	}
 
 	public WebElement dropDownByMonth(String month) {
-		log.info("month option:" + month);
+		Logger.info("month option:" + month);
 		return driver.findElement(By.xpath("//select[@id='Monthly']/option[contains(text(),'" + month + "')]"));
 	}
 
 	public WebElement dropDownByQuater(String quater) {
-		log.info("quater option:" + quater);
+		Logger.info("quater option:" + quater);
 		return driver.findElement(By.xpath("//select[@id='Quarterly']/option[contains(text(),'" + quater + "')]"));
 	}
 
 	public WebElement dropDownByYear(String yearly) {
-		log.info("yearly option:" + yearly);
+		Logger.info("yearly option:" + yearly);
 		return driver.findElement(By.xpath("//select[@id='Yearly']/option[contains(text(),'" + yearly + "')]"));
 	}
 
 	public static void getMonthData() throws FileNotFoundException, IOException
 	{
-		log.info("get month Data display");
+		Logger.info("get month Data display");
 		//List<WebElement> rows = driver.findElements(By.xpath("//div[@id='dynamictable']/table/tbody/tr"));
 		List<WebElement> rowslist = waitElements("//div[@id='dynamictable']/table/tbody/tr");
-		log.info("Rows Size"+rowslist.size());
+		Logger.info("Rows Size"+rowslist.size());
 		System.out.println("Rows size:"+rowslist.size());
 		//List<String,Integer> list = new ArrayList<>();
 		//add some stuff	
@@ -69,12 +68,12 @@ public class AmKpiPage extends TestBase {
 		for(int rows=0;rows<=rowslist.size();rows++)
 		{			
 			List<WebElement> colmns = waitElements("//div[@id='dynamictable']/table/tbody/tr['"+rows+"']/td");
-			log.info("colmns Size"+colmns.size());
+			Logger.info("colmns Size"+colmns.size());
 			//System.out.println("colmns size:"+colmns.size());
 			//dataSets = new String[rowslist.size()][colmns.size()];
 			for(int col=0;col<colmns.size();col++)
 			{	 
-				log.info(colmns.get(col).getText()+" ");
+				Logger.info(colmns.get(col).getText()+" ");
 				try {
 					
 					System.out.println("done");

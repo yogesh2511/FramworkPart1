@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -43,8 +44,10 @@
 					</systemPropertyVariables>
 					<suiteXmlFiles>
 						<suiteXmlFile>resources/runner/Suite.xml</suiteXmlFile>
-						<!-- TestNG suite XML files <suiteXmlFile>LoginTestNG.xml</suiteXmlFile> 
-							<suiteXmlFile>NewRequirementTest.xml</suiteXmlFile> <suiteXmlFile>UpdateRegisterdetails.xml</suiteXmlFile> -->
+						<!-- TestNG suite XML files
+						<suiteXmlFile>LoginTestNG.xml</suiteXmlFile> 
+							<suiteXmlFile>NewRequirementTest.xml</suiteXmlFile>
+						<suiteXmlFile>UpdateRegisterdetails.xml</suiteXmlFile> -->
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
@@ -57,7 +60,8 @@
 	</build>
 	<dependencies>
 
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
+		<!--
+		https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
@@ -72,11 +76,21 @@
 			<version>6.10</version>
 			<!-- <scope>test</scope> -->
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+
+		<!--
+		https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.24.3</version>
+		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.24.3</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>
@@ -113,14 +127,17 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports <dependency> 
+		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports
+		<dependency> 
 			<groupId>com.aventstack</groupId> <artifactId>extentreports</artifactId> 
 			<version>3.0.3</version> <scope>provided</scope> </dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/com.beust/jcommander -->
-		<!-- <dependency> <groupId>com.beust</groupId> <artifactId>jcommander</artifactId> 
+		<!-- <dependency> <groupId>com.beust</groupId>
+		<artifactId>jcommander</artifactId> 
 			<version>1.27</version> </dependency> -->
-		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+		<!--
+		https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
 		<dependency>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-surefire-plugin</artifactId>
@@ -144,5 +161,8 @@
 		<name>Rangam Infotech Pvt ltd</name>
 		<url>http://www.rangaminfotech.com/</url>
 	</organization>
-	<description>SourcePros  webportal is Research, Source &amp; Identify: Fully understand the job requirement, specification and skills required for the position. Research based on specific locale, industry, company, and position, to identify high-potential prospects for Recruitment.</description>
+	<description>SourcePros webportal is Research, Source &amp; Identify: Fully
+		understand the job requirement, specification and skills required for
+		the position. Research based on specific locale, industry, company, and
+		position, to identify high-potential prospects for Recruitment.</description>
 </project>

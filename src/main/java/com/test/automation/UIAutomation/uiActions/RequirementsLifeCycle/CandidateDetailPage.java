@@ -1,13 +1,12 @@
 package com.test.automation.UIAutomation.uiActions.RequirementsLifeCycle;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.WebElement;
 
 import com.test.automation.UIAutomation.testBase.TestBase;
 
 public class CandidateDetailPage extends TestBase {
 
-	public static Logger log = Logger.getLogger(CandidateDetailPage.class.getName());
 	
 	public WebElement SelenctTabInfo(String CandidateDetailsTab)
 	{

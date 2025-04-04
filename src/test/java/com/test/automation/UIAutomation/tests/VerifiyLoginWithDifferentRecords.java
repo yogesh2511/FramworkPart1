@@ -1,6 +1,6 @@
 package com.test.automation.UIAutomation.tests;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.DataProvider;
@@ -12,7 +12,6 @@ import com.test.automation.UIAutomation.LoginPage.LoginPage;
 import com.test.automation.UIAutomation.testBase.TestBase;
 
 public class VerifiyLoginWithDifferentRecords extends TestBase {
-	public static Logger log = Logger.getLogger(VerifiyLoginWithDifferentRecords.class.getName());
 	SoftAssert s_assert = new SoftAssert();
 
 	@DataProvider(name = "loginData")
@@ -26,9 +25,9 @@ public class VerifiyLoginWithDifferentRecords extends TestBase {
 	 * @BeforeTest public void setUp1() {
 	 * 
 	 * TestBase.initializeTestBaseSetup(Config.getProperty("browser"),
-	 * Config.getProperty("testsiteurl")); log.info("open url succssfully");
+	 * Config.getProperty("testsiteurl")); Logger.info("open url succssfully");
 	 * System.out.println(Config.getProperty("testsiteurl"));
-	 * log.info(Config.getProperty("testsiteurl"));
+	 * Logger.info(Config.getProperty("testsiteurl"));
 	 * 
 	 * }
 	 */
@@ -39,7 +38,7 @@ public class VerifiyLoginWithDifferentRecords extends TestBase {
 		
 
 		if (runMode.equalsIgnoreCase("n")) {
-			log.info("verifiyLoginWithDifferentRecords method skipped");
+			Logger.info("verifiyLoginWithDifferentRecords method skipped");
 			test = extent.startTest("verifiyLoginWithDifferentRecords");
 			test.log(LogStatus.INFO, "verifiyLoginWithDifferentRecords method skipped");
 			test.log(LogStatus.SKIP, "Login and logout skipped");
@@ -52,23 +51,23 @@ public class VerifiyLoginWithDifferentRecords extends TestBase {
 				jsp = new LoginPage(driver);
 				// jsp.beforelogin();
 				driver.navigate().refresh();
-				log.info("**********starting test**********");
+				Logger.info("**********starting test**********");
 
 				test = extent.startTest("verifiyLoginWithDifferentRecords");
 
-				log.info("try to login with username:" + emailAddress + " and password" + password);
+				Logger.info("try to login with username:" + emailAddress + " and password" + password);
 				test.log(LogStatus.INFO, "Email:" + emailAddress + " and password : " + password);
 
 				boolean LoginSuccessStatus = LoginPage.loginToApplication(emailAddress, password);
-				log.info("LoginSuccessStatus:" + LoginSuccessStatus);
+				Logger.info("LoginSuccessStatus:" + LoginSuccessStatus);
 				Assert.assertEquals(true, LoginSuccessStatus);
 				logout();
 				boolean LogOutSuccessStatus = jsp.verifyLogOutSuccess();
 				s_assert.assertEquals(LogOutSuccessStatus, true);
 				test.log(LogStatus.INFO, "Logout successfully:" + LoginSuccessStatus);
 				s_assert.assertAll();
-				log.info("Login functionality working fine");
-				log.info("**********finish test************");
+				Logger.info("Login functionality working fine");
+				Logger.info("**********finish test************");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

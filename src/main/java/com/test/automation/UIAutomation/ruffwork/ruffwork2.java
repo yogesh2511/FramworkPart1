@@ -1,16 +1,8 @@
 package com.test.automation.UIAutomation.ruffwork;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.StringTokenizer;
-
-import org.apache.commons.lang3.text.WordUtils;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 public class ruffwork2
 {
-	public static Logger log= Logger.getLogger(ruffwork2.class.getName());
 	public static WebDriver driver;
 
 	public static void main(String[] args) throws Exception 

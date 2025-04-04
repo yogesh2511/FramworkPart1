@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -14,10 +13,10 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
 import com.test.automation.UIAutomation.testBase.TestBase;
+import com.test.automation.UIAutomation.utility.Logger;
 
 public class ElementLoad extends TestBase {
-	public static Logger log = Logger.getLogger(ElementLoad.class.getName());
-
+	
 	public static WebElement getLocator(String locator) throws Exception {
 		WebElement homepageload = null;
 		// System.out.println(locator);
@@ -50,7 +49,7 @@ public class ElementLoad extends TestBase {
 				throw new Exception("Unknown locator type '" + locatorType + "'");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 			e.printStackTrace();
 		}
 		return homepageload;
@@ -62,43 +61,43 @@ public class ElementLoad extends TestBase {
 		String[] split = locator.split(":");
 		String locatorType = split[0];
 		String locatorValue = split[1];
-		//log.info("locatorType:-" + locatorType);
-		//log.info("locatorValue:-" + locatorValue);
+		//Logger.info("locatorType:-" + locatorType);
+		//Logger.info("locatorValue:-" + locatorValue);
 		// System.out.println("locatorType:-" + locatorType);
 		// System.out.println("locatorValue:-" + locatorValue);
 		try {
 			if (locatorType.toLowerCase().equals("id")) {
 				homepageload = driver.findElements(By.id(locatorValue));
-				log.info(homepageload.toString());
+				Logger.info(homepageload.toString());
 			} else if (locatorType.toLowerCase().equals("name")) {
 				homepageload = driver.findElements(By.name(locatorValue));
-				log.info(homepageload.toString());
+				Logger.info(homepageload.toString());
 			} else if ((locatorType.toLowerCase().equals("classname")) || (locatorType.toLowerCase().equals("class"))) {
 				homepageload = driver.findElements(By.className(locatorValue));
-				log.info(homepageload.toString());
+				Logger.info(homepageload.toString());
 			} else if ((locatorType.toLowerCase().equals("tagname")) || (locatorType.toLowerCase().equals("tag"))) {
 				homepageload = driver.findElements(By.tagName(locatorValue));
-				log.info(homepageload.toString());
+				Logger.info(homepageload.toString());
 			} else if ((locatorType.toLowerCase().equals("linktext")) || (locatorType.toLowerCase().equals("link"))) {
 				homepageload = driver.findElements(By.linkText(locatorValue));
-				log.info(homepageload.toString());
+				Logger.info(homepageload.toString());
 			} else if (locatorType.toLowerCase().equals("partiallinktext"))
 			{
 				homepageload = driver.findElements(By.partialLinkText(locatorValue));
-				log.info(homepageload.toString());
+				Logger.info(homepageload.toString());
 			} else if ((locatorType.toLowerCase().equals("cssselector")) || (locatorType.toLowerCase().equals("css"))) {
 				homepageload = driver.findElements(By.cssSelector(locatorValue));
-				log.info(homepageload.toString());
+				Logger.info(homepageload.toString());
 			} else if (locatorType.toLowerCase().equals("xpath")) {
 				homepageload = driver.findElements(By.xpath(locatorValue));
-				log.info(homepageload.toString());
+				Logger.info(homepageload.toString());
 			} else
 			{
 				throw new Exception("Unknown locator type '" + locatorType + "'");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			log.info(e.getMessage());
+			Logger.info(e.getMessage());
 			e.printStackTrace();
 		}
 		return homepageload;
@@ -118,7 +117,7 @@ public class ElementLoad extends TestBase {
 
 	public static List<WebElement> getWebElements(String locator, Properties fileName) throws Exception {
 		List<WebElement> elementlocator = null;
-		// fileName = loginPropertyFile;
+		// fileName = LoggerinPropertyFile;
 		if (elementlocator == null) {
 
 			try {

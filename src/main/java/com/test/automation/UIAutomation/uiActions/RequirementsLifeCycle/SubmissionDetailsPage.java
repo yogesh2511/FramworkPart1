@@ -1,14 +1,11 @@
 package com.test.automation.UIAutomation.uiActions.RequirementsLifeCycle;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
 import com.test.automation.UIAutomation.testBase.TestBase;
 
 public class SubmissionDetailsPage extends TestBase
 {
-	public static Logger log= Logger.getLogger(SubmissionDetailsPage.class);
-	
 	public static WebElement selectRCTLAM()
 	{
 		return waitElement("//select[@id='CommentBy']");

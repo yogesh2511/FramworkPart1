@@ -3,7 +3,7 @@ package com.test.automation.UIAutomation.testBase;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.apache.log4j.Logger;
+import com.test.automation.UIAutomation.utility.Logger;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -13,7 +13,6 @@ import com.test.automation.UIAutomation.utility.ResourceHelper;
 
 public class LocalDriverFactory extends TestBase
 {
-	public static Logger log = Logger.getLogger(LocalDriverFactory.class.getName());
 	private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();
 	private static WebDriver driver = null;
 
@@ -44,21 +43,21 @@ public class LocalDriverFactory extends TestBase
 
 		if (browserName.equalsIgnoreCase("chrome")) {
 			driver = initChromeDriver();
-			log.info("chrome browser");
+			Logger.info("chrome browser");
 		}
 		if (browserName.equalsIgnoreCase("firefox")) {
 			driver = initFirefoxDriver();
-			log.info("firefox browser");
+			Logger.info("firefox browser");
 		}
 		if (browserName.equalsIgnoreCase("ie")) {
 			driver = initIEDriver();
-			log.info("IE browser");
+			Logger.info("IE browser");
 		}
 		if (browserName.equalsIgnoreCase("phantom")) {
 			driver = initPhantom();
-			log.info("Phantom browser");
+			Logger.info("Phantom browser");
 		} else
-			log.info("browser is invalid, browser of choice..");
+			Logger.info("browser is invalid, browser of choice..");
 			System.out.println("invalid browser type");
 		
 		return driver;
